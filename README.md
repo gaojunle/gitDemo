@@ -93,3 +93,14 @@ push的时候，push到对应的Host即可
     - 如果使用github，可以去指定项目下，添加对应的xxx.pub文件中公钥
     - 在对应项目下配置.git/config指定在全局中配置的host的名字
     - 使用git协议即可；
+
+```
+gantt
+dateFormat YYYY-MM-DD
+section S1
+T1: 2014-01-01, 9d
+section S2
+T2: 2014-01-11, 9d
+section S3
+T3: 2014-01-02, 9d
+```

@@ -1,0 +1,68 @@
+.header {
+    width: 100%;
+}
+
+.header .box {
+    width: 1000px;
+    margin: auto;
+    height: 70px;
+    line-height: 70px;
+}
+
+.header .logo {
+    margin-top: 10px;
+    margin-right: 80px;
+}
+
+.header .nav {
+    float: left;
+}
+
+.header .nav li {
+    padding: 0px;
+    margin: 0px 10px;
+    list-style: none;
+    float: left;
+}
+
+.header .nav li a {
+    color: #222;
+    display: inline-block;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    line-height: 1.2;
+    font-size: 16px;
+}
+
+.header .nav li a:hover, .header .nav li.on a {
+    border: 1px solid #5e9cff;
+}
+
+.header .search {
+    float: left;
+    margin: 0px 30px;
+}
+
+.header .search .search-ipt {
+    display: inline-block;
+    width: 170px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #d6d6d6;
+    border-radius: 20px;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+.header .search img {
+    vertical-align: middle;
+}
+
+.header .search .icon-search {
+    margin-left: 5px;
+}
+
+.header .login {
+    float: left;
+    margin-left: 10px;
+}

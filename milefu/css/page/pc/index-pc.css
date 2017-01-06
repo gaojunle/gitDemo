@@ -1,0 +1,186 @@
+/* 本例子css */
+.slideBox{ width:100%; height:560px; overflow:hidden; position:relative; border:1px solid #ddd;      box-sizing: border-box;}
+.slideBox .hd{ height:15px; overflow:hidden; position:absolute; left:45%; bottom:15px; z-index:1; }
+.slideBox .hd ul{ overflow:hidden; zoom:1; float:left;  }
+.slideBox .hd ul li{ float:left; margin:0px 10px;  width:12px; border-radius:12px;height:12px; line-height:15px; text-align:center; background:#c2c2c2; cursor:pointer; }
+.slideBox .hd ul li.on{ background:#5e9cff; color:#fff; }
+.slideBox .bd{ position:relative; height:100%; z-index:0;   }
+.slideBox .bd li{ zoom:1; vertical-align:middle; }
+.slideBox .bd img{ width:100%;height:560px; display:block;  }
+
+/* 下面是前/后按钮代码，如果不需要删除即可 */
+.slideBox .prev,
+.slideBox .next{ position:absolute; left:3%; top:50%; margin-top:-25px; display:block; width:32px; height:40px; background:url(../images/slider-arrow.png) -110px 5px no-repeat; filter:alpha(opacity=50);opacity:0.5;   }
+.slideBox .next{ left:auto; right:3%; background-position:8px 5px; }
+.slideBox .prev:hover,
+.slideBox .next:hover{ filter:alpha(opacity=100);opacity:1;  }
+.slideBox .prevStop{ display:none;  }
+.slideBox .nextStop{ display:none;  }
+
+.people-list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-flex-wrap:wrap;
+        -ms-flex-wrap:wrap;
+            flex-wrap:wrap;
+    margin: 0px auto;
+    width: 1000px;
+    padding-top: 60px;
+}
+
+.people-list .list {
+    width: 320px;
+    height: 500px;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.35);
+}
+
+.people-list .list .people-head {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    width: 88px;
+    height: 88px;
+    border-radius: 88px;
+    z-index: 2;
+}
+
+.people-list .list .info {
+    height: 70px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 70px;
+    margin-left: 44px;
+    margin-top: 30px;
+    box-sizing: border-box;
+    background: #5e9cff;
+    color: white;
+}
+
+.people-list .list .info .name {
+    width: 150px;
+}
+
+.people-list .list .info h2 {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.people-list .list .info p {
+    font-size: 16px;
+}
+
+.people-list .list .info .focus {
+    color: white;
+}
+
+.people-list .list .status {
+    margin: 15px 0px;
+    text-align: right;
+}
+
+.people-list .list .status span {
+    margin: 0px 10px;
+}
+
+.people-slide {
+    margin: 0px 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.people-slide .hd {
+    overflow: hidden;
+}
+
+.people-slide .hd ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.people-slide .hd li {
+    position: relative;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    width: 100%;
+    float: left;
+    border-top: 0;
+    cursor: default;
+    border: 1px solid #dfdfdf;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.people-slide .hd li.on {
+    background: #fff;
+    color: #5e9cff;
+    font-size: 20px;
+}
+
+.people-slide .bd {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+}
+
+.people-slide .lh {
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.people-slide .lh li {
+    padding: 0 10px;
+    float: left;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #313131;
+}
+
+.people-slide .lh li img {
+    width: 63px;
+    height: 63px;
+    margin: 10px;
+    text-align: center;
+}
+
+.people-slide .lh li h2 {
+    width: 200px;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.people-slide .lh li p {
+    width: 200px;
+}
+
+.people-slide .lh .speech-content {
+    padding: 10px;
+}
+
+.people-list .list .people-detail {
+    padding: 20px;
+    display: inline-block;
+}

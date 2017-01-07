@@ -239,8 +239,9 @@ a, a:hover {
 input, select {
     -webkit-appearance: none;
     appearance: none;
+    outline: none;
 }
-
+input:focus {border: 1px solid #c0c0c0 !important;}
 select {
     border: none
 }
@@ -249,10 +250,10 @@ html, body {
     width: 100%;
     margin: 0px;
     padding: 0px;
-    background: white;
+    background: #fcfcfc;
     font-family: 'Hiragino Sans GB', 'Microsoft Yahei', SimSun, Arial, 'Helvetica Neue', Helvetica;
 }
-
+a{color: #313131;}
 .clearfix:after {
     visibility: hidden;
     display: block;
@@ -265,7 +266,10 @@ html, body {
 .clearfix {
     display: block;
 }
-
+.contbox{
+    width: 1000px;
+    margin: 0px auto;
+}
 .hide{display: none !important;}
 .icon{
     display: inline-block;

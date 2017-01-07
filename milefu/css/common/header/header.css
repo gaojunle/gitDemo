@@ -63,6 +63,7 @@
 }
 
 .header .login {
+    cursor: pointer;
     float: left;
     margin-left: 10px;
 }

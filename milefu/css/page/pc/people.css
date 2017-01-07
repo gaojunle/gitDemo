@@ -1,3 +1,9 @@
+body{
+    background: #f6f9ff;
+}
+.contbox{
+    background: white;
+}
 .title {
     position: relative;
     margin-top: 60px;
@@ -30,8 +36,9 @@
     border-bottom: 25px solid transparent;
 }
 
-.box {
+.people-list-box {
     padding: 0px 20px;
+    border: 1px solid #dcdcdc;
 }
 
 .labels {
@@ -60,7 +67,9 @@
     padding: 20px;
     padding-top: 0px;
 }
-
+.select-labels a{
+    color: #5e9cff;
+}
 .select-labels .p-sipt {
     margin-top: 20px;
     text-align: center;
@@ -87,8 +96,6 @@
     display: inline-block;
     width: 68px;
     height: 68px;
-    background-color: rgb(94, 156, 255);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.35);
 }
 .peolist li {
     margin-top: 30px;

@@ -6,7 +6,7 @@
           content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>米乐弗-主页</title>
+    <title>米乐弗</title>
     <link rel="stylesheet" href="../../css/common/normalize.css">
     <link rel="stylesheet" href="../../css/common/header/header.css">
     <link rel="stylesheet" href="../../css/common/footer/footer.css">
@@ -25,7 +25,7 @@
         </ul>
         <div class="search">
             <input type="text" class="search-ipt" placeholder="请输入要查询内容">
-            <img src="../../img/pc/search-icon.png" class="icon-search">
+            <img src="../../img/pc/search-icon.png" class="icon-search"></img>
         </div>
         <div class="login">
             <img src="../../img/pc/weixin-icon.png" alt="">
@@ -43,8 +43,8 @@
         </div>
         <div class="bd">
             <ul>
-                <li><a href="#"><img src="../../img/pc/slider/slide1.png"/></a></li>
-                <li><a href="#"><img src="../../img/pc/slider/slide2.png"/></a></li>
+                <li><a href="#" target="_blank"><img src="../../img/pc/slider/slide1.png"/></a></li>
+                <li><a href="#" target="_blank"><img src="../../img/pc/slider/slide2.png"/></a></li>
             </ul>
         </div>
 
@@ -289,7 +289,7 @@
     <p>版权所有 @2016 米乐弗</p>
 </div>
 <script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/lib/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.SuperSlide.2.1.2.js"></script>
 <script type="text/javascript" src="../../js/lib/jquery.pagination.js"></script>
 <script type="text/javascript" src="../../js/page/pc/index-pc.js"></script>
 <script>
@@ -303,7 +303,7 @@
             delayTime: 700,
             vis: 'auto'
         });
-        $(".people-slide").slide({trigger: 'click',delayTime: 200});
+        $(".people-slide").slide({delayTime: 0});
 
         //这是一个非常简单的demo实例，让列表元素分页显示
         //回调函数的作用是显示对应分页的列表项内容

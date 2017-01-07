@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9bd80396-95a5-4d2f-8c67-e51d6018d015" name="米乐弗" url="http://106.75.72.156">
+        <fileTransfer host="106.75.72.156" port="22" rootFolder="/data1/www/htdocs/webapp/static" accessType="SFTP" password="dfc7dfc3dfc6dfcfdfccdfdfdf8bdfeadf89dfdbdfdddfcfdfebdff9dfee" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

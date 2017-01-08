@@ -4,37 +4,7 @@ body{
 .contbox{
     background: white;
 }
-.title {
-    position: relative;
-    margin-top: 60px;
-    text-align: center;
-    font-size: 30px;
-    color: white;
-    height: 50px;
-    line-height: 50px;
-    background: #5e9cff;
-}
 
-.triangle {
-    position: absolute;
-    display: inline-block;
-    width: 0;
-    height: 0;
-}
-
-.triangle-left {
-    left: 0px;
-    border-top: 25px solid transparent;
-    border-left: 40px solid white;
-    border-bottom: 25px solid transparent;
-}
-
-.triangle-right {
-    right: 0px;
-    border-top: 25px solid transparent;
-    border-right: 40px solid white;
-    border-bottom: 25px solid transparent;
-}
 
 .people-list-box {
     padding: 0px 20px;

@@ -2,16 +2,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>米乐弗-人物详情</title>
     <link rel="stylesheet" href="../../css/common/normalize.css">
-    <link rel="stylesheet" href="../../css/common/header/header.css">
-    <link rel="stylesheet" href="../../css/common/footer/footer.css">
+    <link rel="stylesheet" href="../../css/common/common.css">
     <link rel="stylesheet" href="../../css/common/pagination.css">
     <link rel="stylesheet" href="../../css/page/pc/people-detail.css">
 </head>
 <body>
+<div id="header"></div>
 <div class="peo-info contbox clearfix">
     <img class="head-icon fl" src="../../img/pc/people/mayun-1.png" alt="">
 
@@ -232,43 +234,12 @@
         </ul>
     </div>
 </div>
+<div id="footer"></div>
+
 <script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/base.js"></script>
 <script type="text/javascript" src="../../js/lib/jquery.SuperSlide.2.1.2.js"></script>
 <script type="text/javascript" src="../../js/lib/jquery.pagination.js"></script>
 <script type="text/javascript" src="../../js/page/pc/people-detail.js"></script>
-<script>
-    $(function () {
-        /*$('.slideBox').slide({
-         mainCell: '.bd ul',
-         effect: 'left',
-         autoPlay: true,
-         trigger: 'click',
-         delayTime: 700,
-         vis: 'auto'
-         });*/
-        $(".slideBox").slide({trigger: 'click', delayTime: 200});
-
-        //这是一个非常简单的demo实例，让列表元素分页显示
-        //回调函数的作用是显示对应分页的列表项内容
-        //回调函数在用户每次点击分页链接的时候执行
-        //参数page_index{int整型}表示当前的索引页
-        var initPagination = function () {
-            // 创建分页
-            $("#Pagination").pagination(40, {
-                num_edge_entries: 5, //边缘页数
-                num_display_entries: 4, //主体页数
-                callback: pageselectCallback,
-                prev_text: "< 上一页",
-                next_text: "下一页 >",
-                items_per_page: 3 //每页显示1项
-            });
-        }();
-
-        function pageselectCallback(page_index, jq) {
-            return false;
-        }
-    })
-</script>
-
 </body>
 </html>

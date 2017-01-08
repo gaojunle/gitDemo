@@ -2,11 +2,12 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="9bd80396-95a5-4d2f-8c67-e51d6018d015" name="米乐弗" url="http://106.75.72.156">
-        <fileTransfer host="106.75.72.156" port="22" rootFolder="/data1/www/htdocs/webapp/static" accessType="SFTP" password="dfc7dfc3dfc6dfcfdfccdfdfdf8bdfeadf89dfdbdfdddfcfdfebdff9dfee" username="root">
+      <webServer id="9bd80396-95a5-4d2f-8c67-e51d6018d015" name="米乐弗" url="">
+        <fileTransfer host="106.75.72.156" port="22" rootFolder="/data1/www/htdocs/webapp/static" accessType="SFTP" username="root" password="dfc7dfc3dfc6dfcfdfccdfdfdf8bdfeadf89dfdbdfdddfcfdfebdff9dfee">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
+          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

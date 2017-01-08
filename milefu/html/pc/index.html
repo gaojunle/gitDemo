@@ -8,31 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>米乐弗</title>
     <link rel="stylesheet" href="../../css/common/normalize.css">
-    <link rel="stylesheet" href="../../css/common/header/header.css">
-    <link rel="stylesheet" href="../../css/common/footer/footer.css">
+    <link rel="stylesheet" href="../../css/common/common.css">
     <link rel="stylesheet" href="../../css/common/pagination.css">
     <link rel="stylesheet" href="../../css/page/pc/index-pc.css">
 </head>
 <body>
-<div class="header ">
-    <div class="box clearfix">
-        <img class="logo fl" src="../../img/pc/logo.png" alt="">
-        <ul class="nav clearfix">
-            <li class="on"><a href="./index.html">首页</a></li>
-            <li><a href="./people.html">人物</a></li>
-            <li><a href="./view.html">观点</a></li>
-            <li><a href="./create.html">创建</a></li>
-        </ul>
-        <div class="search">
-            <input type="text" class="search-ipt" placeholder="请输入要查询内容">
-            <img src="../../img/pc/search-icon.png" class="icon-search"></img>
-        </div>
-        <div class="login">
-            <img src="../../img/pc/weixin-icon.png" alt="">
-            微信登录
-        </div>
-    </div>
-</div>
+<div id="header"></div>
 <div class="wraper">
     <div id="slideBox" class="slideBox ">
         <div class="hd">
@@ -280,52 +261,12 @@
         <img style="display: block;width: 100%;" src="../../img/pc/foot.png" alt="">
     </div>
 </div>
-<style>
+<div id="footer"></div>
 
-</style>
-<div class="footer">
-    <p><a href="#">联系我们</a><span></span><a href="#">商务合作</a><span></span><a href="#">法律声明</a><span></span><a href="#">加入我们</a>
-    </p>
-    <p>版权所有 @2016 米乐弗</p>
-</div>
 <script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/lib/jquery.SuperSlide.2.1.2.js"></script>
 <script type="text/javascript" src="../../js/lib/jquery.pagination.js"></script>
+<script type="text/javascript" src="../../js/base.js"></script>
 <script type="text/javascript" src="../../js/page/pc/index-pc.js"></script>
-<script>
-
-    $(function () {
-        $('.slideBox').slide({
-            mainCell: '.bd ul',
-            effect: 'left',
-            autoPlay: true,
-            trigger: 'click',
-            delayTime: 700,
-            vis: 'auto'
-        });
-        $(".people-slide").slide({delayTime: 0});
-
-        //这是一个非常简单的demo实例，让列表元素分页显示
-        //回调函数的作用是显示对应分页的列表项内容
-        //回调函数在用户每次点击分页链接的时候执行
-        //参数page_index{int整型}表示当前的索引页
-        var initPagination = function () {
-            // 创建分页
-            $("#Pagination").pagination(40, {
-                num_edge_entries: 5, //边缘页数
-                num_display_entries: 4, //主体页数
-                callback: pageselectCallback,
-                prev_text: "< 上一页",
-                next_text: "下一页 >",
-                items_per_page: 3 //每页显示1项
-            });
-        }();
-
-        function pageselectCallback(page_index, jq) {
-
-            return false;
-        }
-    })
-</script>
 </body>
 </html>

@@ -1,0 +1,125 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>米乐弗-创建人物</title>
+    <link rel="stylesheet" href="../../css/common/normalize.css">
+    <link rel="stylesheet" href="../../css/common/common.css">
+    <link rel="stylesheet" href="../../css/common/pagination.css">
+    <link rel="stylesheet" href="../../css/page/pc/index-pc.css">
+</head>
+<body>
+<div id="header"></div>
+<div class="contbox">
+    <div class="title">
+        <span class="triangle triangle-left"></span><span>创建人物</span><span class="triangle triangle-right"></span>
+    </div>
+    <form class="cmxform" id="createForm" method="get" action="">
+        <p>
+            <label for="title">演讲标题</label>
+            <input id="title" name="title" type="text">
+        </p>
+        <p>
+            <label for="lastname">姓氏</label>
+            <input id="lastname" name="lastname" type="text">
+        </p>
+        <p>
+            <label for="username">用户名</label>
+            <input id="username" name="username" type="text">
+        </p>
+        <p>
+            <label for="password">密码</label>
+            <input id="password" name="password" type="password">
+        </p>
+        <p>
+            <label for="confirm_password">验证密码</label>
+            <input id="confirm_password" name="confirm_password" type="password">
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+        </p>
+        <p>
+            <label for="agree">请同意我们的声明</label>
+            <input type="checkbox" class="checkbox" id="agree" name="agree">
+        </p>
+        <p>
+            <label for="newsletter">我乐意接收新信息</label>
+            <input type="checkbox" class="checkbox" id="newsletter" name="newsletter">
+        </p>
+
+        <p>
+            <input class="submit" type="submit" value="提交">
+        </p>
+        <img src="http://106.75.72.156/api/getcaptcha?type=lecture" alt=""><input type="text" placeholder="验证码">
+    </form>
+</div>
+<div id="footer"></div>
+
+<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../../js/base.js"></script>
+<script type="text/javascript" src="../../js/page/pc/create.js"></script>
+<script>
+    $.validator.setDefaults({
+        submitHandler: function () {
+            alert("提交事件!");
+        }
+    });
+    jQuery(function ($) {
+        $("#signupForm").validate({
+            rules: {
+                firstname: "required",
+                lastname: "required",
+                username: {
+                    required: true,
+                    minlength: 2
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                "topic[]": {
+                    required: "#newsletter:checked",
+                    minlength: 2
+                },
+                agree: "required"
+            },
+            messages: {
+                firstname: "请输入您的名字",
+                lastname: "请输入您的姓氏",
+                username: {
+                    required: "请输入用户名",
+                    minlength: "用户名必需由两个字母组成"
+                },
+                password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于 5 个字母"
+                },
+                confirm_password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于 5 个字母",
+                    equalTo: "两次密码输入不一致"
+                },
+                email: "请输入一个正确的邮箱",
+                agree: "请接受我们的声明",
+                topic: "请选择两个主题"
+            }
+        });
+    })
+</script>
+</body>
+</html>

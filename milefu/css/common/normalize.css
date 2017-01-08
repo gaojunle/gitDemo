@@ -253,36 +253,3 @@ html, body {
     background: #fcfcfc;
     font-family: 'Hiragino Sans GB', 'Microsoft Yahei', SimSun, Arial, 'Helvetica Neue', Helvetica;
 }
-a{color: #313131;}
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
-
-.clearfix {
-    display: block;
-}
-.contbox{
-    width: 1000px;
-    margin: 0px auto;
-}
-.hide{display: none !important;}
-.icon{
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-}
-.ellipsis{
-    overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.fl{float: left;  }
-.fr{float: right;}
-.tc{text-align: center}
-.tr{text-align: right}

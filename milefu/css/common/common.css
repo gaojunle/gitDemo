@@ -1,0 +1,181 @@
+a{color: #313131;}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: block;
+}
+.contbox{
+    width: 1000px;
+    margin: 0px auto;
+}
+.hide{display: none !important;}
+.icon{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+}
+.ellipsis{
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.fl{float: left;  }
+.fr{float: right;}
+.tc{text-align: center}
+.tr{text-align: right}
+
+#header{
+    background: white;
+}
+.header {
+    width: 100%;
+}
+
+.header .box {
+    position: relative;
+    width: 1000px;
+    margin: auto;
+    height: 70px;
+    line-height: 70px;
+}
+
+.header .logo {
+    margin-top: 10px;
+    margin-right: 80px;
+}
+
+.header .nav {
+    float: left;
+}
+
+.header .nav li {
+    padding: 0px;
+    margin: 0px 10px;
+    list-style: none;
+    float: left;
+}
+
+.header .nav li a {
+    color: #222;
+    display: inline-block;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    line-height: 1.2;
+    font-size: 16px;
+}
+
+.header .nav li a:hover, .header .nav li.on a {
+    border: 1px solid #5e9cff;
+}
+
+.header .search {
+    float: left;
+    margin: 0px 30px;
+}
+
+.header .search .search-ipt {
+    display: inline-block;
+    width: 170px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #d6d6d6;
+    border-radius: 20px;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+.header .search img {
+    vertical-align: middle;
+}
+
+.header .search .icon-search {
+    margin-left: 5px;
+}
+
+.header .login {
+    cursor: pointer;
+    float: left;
+    margin-left: 10px;
+    position: absolute;
+    right: 0px;
+}
+
+#login_container {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    background: white;
+    left: -100%;
+    height: 300px;
+    border: 1px solid #dcdcdc;
+}
+
+/*尾*/
+.footer {
+    height: 100px;
+    background: #a7a7a7;
+    padding-top: 15px;
+    box-sizing: border-box;
+}
+
+.footer p {
+    padding: 10px 0px;
+    color: white;
+    font-size: 13px;
+    text-align: center;
+}
+
+.footer p a {
+    color: white;
+    margin: 0px 20px;
+    vertical-align: middle;
+}
+
+.footer p span {
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background: white;
+    vertical-align: middle;
+}
+
+/*页头标识*/
+.title {
+    position: relative;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    background: #5e9cff;
+}
+
+.triangle {
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+
+.triangle-left {
+    left: 0px;
+    border-top: 25px solid transparent;
+    border-left: 40px solid white;
+    border-bottom: 25px solid transparent;
+}
+
+.triangle-right {
+    right: 0px;
+    border-top: 25px solid transparent;
+    border-right: 40px solid white;
+    border-bottom: 25px solid transparent;
+}

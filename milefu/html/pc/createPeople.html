@@ -6,62 +6,95 @@
           content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>米乐弗-创建人物</title>
+    <title>米乐弗-创建演讲</title>
     <link rel="stylesheet" href="../../css/common/normalize.css">
     <link rel="stylesheet" href="../../css/common/common.css">
     <link rel="stylesheet" href="../../css/common/pagination.css">
-    <link rel="stylesheet" href="../../css/page/pc/index-pc.css">
+    <link rel="stylesheet" href="../../js/lib/ueditor/themes/default/css/umeditor.css">
+    <link rel="stylesheet" href="../../css/page/pc/create.css">
 </head>
 <body>
 <div id="header"></div>
-<div class="contbox">
+<div class="contbox ">
     <div class="title">
         <span class="triangle triangle-left"></span><span>创建人物</span><span class="triangle triangle-right"></span>
     </div>
-    <form class="cmxform" id="createForm" method="get" action="">
-        <p>
-            <label for="title">演讲标题</label>
-            <input id="title" name="title" type="text">
-        </p>
-        <p>
-            <label for="lastname">姓氏</label>
-            <input id="lastname" name="lastname" type="text">
-        </p>
-        <p>
-            <label for="username">用户名</label>
-            <input id="username" name="username" type="text">
-        </p>
-        <p>
-            <label for="password">密码</label>
-            <input id="password" name="password" type="password">
-        </p>
-        <p>
-            <label for="confirm_password">验证密码</label>
-            <input id="confirm_password" name="confirm_password" type="password">
-        </p>
-        <p>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email">
-        </p>
-        <p>
-            <label for="agree">请同意我们的声明</label>
-            <input type="checkbox" class="checkbox" id="agree" name="agree">
-        </p>
-        <p>
-            <label for="newsletter">我乐意接收新信息</label>
-            <input type="checkbox" class="checkbox" id="newsletter" name="newsletter">
-        </p>
+    <div class="formbox clearfix">
+        <div class="head-pic fl">
+            <form enctype="multipart/form-data" id="uploadImg" method="post" action="">
+                <a href="javascript:;" class="a-upload">
+                    <span>点击上传头像</span>
+                    <img src="../../img/pc/upload-default.png" alt="">
+                    <input name="imgFile" type="file" accept="image/png,image/gif,image/jpg,image/jpeg,image/bmp"/>
+                </a>
+            </form>
+        </div>
 
-        <p>
-            <input class="submit" type="submit" value="提交">
-        </p>
-        <img src="http://106.75.72.156/api/getcaptcha?type=lecture" alt=""><input type="text" placeholder="验证码">
-    </form>
+        <form class="createForm fl" id="createForm" method="get" action="">
+            <div class="left fl">
+                <p>
+                    <label for="nameCn" class="text-justify">中 文 名</label>
+                    <input id="nameCn" name="nameCn" type="text">
+                </p>
+                <p>
+                    <label for="role">主要身份</label>
+                    <input id="role" name="role" type="text">
+                </p>
+                <p>
+                    <label for="career">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</label>
+                    <input id="career" name="career" type="text">
+                </p>
+                <p>
+                    <label>人物标签</label>
+                    <input name="labels" type="text">
+                </p>
+            </div>
+            <div class="right fl">
+                <p>
+                    <label for="birthplace">出 生 地</label>
+                    <input id="birthplace" name="birthplace" type="text">
+                </p>
+                <p>
+                    <label for="birthday">出生日期</label>
+                    <input id="birthday" name="birthday" type="text">
+                </p>
+
+                <p>
+                    <label for="college">毕业学校</label>
+                    <input id="college" name="college" type="text">
+                </p>
+                <p>
+                    <label for="nationality">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍</label>
+                    <input id="nationality" name="nationality" type="text">
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="create-main">
+        <div class="cont">
+            <h4 class="c-title">人物介绍（选填）</h4>
+
+            <textarea id="myEditor" name="peop-desc-ipt" class="peop-desc-ipt"></textarea>
+            <div class="submitbox clearfix">
+                <a class="prePage fl" href="#">返回上页</a>
+                <div class="codebox fl">
+                    <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
+                    <input class="codeipt" type="text" placeholder="验证码">
+                    <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 <div id="footer"></div>
 
 <script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/lib/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.form.min.js"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="../../js/base.js"></script>
 <script type="text/javascript" src="../../js/page/pc/create.js"></script>
 <script>
@@ -71,54 +104,63 @@
         }
     });
     jQuery(function ($) {
-        $("#signupForm").validate({
+        //实例化编辑器
+        //var um = UM.getEditor('myEditor');
+        //上传文件
+        $('.a-upload input').change(function () {
+            console.log(arguments)
+            $("#uploadImg").ajaxSubmit({
+                url: '/api/uploadimg',
+                data: {
+                    type: 'celebrity'
+                },
+                type: "POST",
+                success: function (retData) {
+                    if (retData.errno == 0) {
+                        $('.a-upload img').attr('src', retData.data);
+                        $('.a-upload span').html('');
+                    } else {
+                        alert('上传出错')
+                    }
+                },
+                error: function (msg) {
+                    alert("出错了");
+                }
+            });
+        })
+        $('.createForm').validate({
+            submitHandler: function (form) {
+                alert("submitted");
+                console.log(arguments)
+                $.post('api/submitcelebrity',{
+                    avatar:$('.a-upload img').attr('src'),
+                    
+                })
+            },
+            errorElement: 'i',
             rules: {
-                firstname: "required",
-                lastname: "required",
-                username: {
-                    required: true,
-                    minlength: 2
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                "topic[]": {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
+                title: 'required',
+                /*nameCn: 'required',
+                 view: 'required',
+                 summary1: 'required',
+                 birthplace: 'required',
+                 birthday: 'required',
+                 college: 'required',
+                 nationality: 'required'*/
             },
             messages: {
-                firstname: "请输入您的名字",
-                lastname: "请输入您的姓氏",
-                username: {
-                    required: "请输入用户名",
-                    minlength: "用户名必需由两个字母组成"
-                },
-                password: {
-                    required: "请输入密码",
-                    minlength: "密码长度不能小于 5 个字母"
-                },
-                confirm_password: {
-                    required: "请输入密码",
-                    minlength: "密码长度不能小于 5 个字母",
-                    equalTo: "两次密码输入不一致"
-                },
-                email: "请输入一个正确的邮箱",
-                agree: "请接受我们的声明",
-                topic: "请选择两个主题"
+                nameCn: '*',
+                view: '*',
+                summary1: '*',
+                birthplace: '*',
+                birthday: '*',
+                college: '*',
+                nationality: '*'
             }
         });
+        $('.js-submit').click(function () {
+            $('.createForm').submit()
+        })
     })
 </script>
 </body>

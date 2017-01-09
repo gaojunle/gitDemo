@@ -23,40 +23,53 @@
         <div class="head-pic fl">
             <form enctype="multipart/form-data" id="uploadImg" method="post" action="">
                 <a href="javascript:;" class="a-upload">
-                    <input id="fileId1" type="file" accept="image/png,image/gif,image/jpg,image/jpeg,image/bmp" name="file" />点击上传标题
+                    <span>点击上传标题</span>
+                    <img src="../../img/pc/upload-default.png" alt="">
+                    <input name="imgFile" type="file" accept="image/png,image/gif,image/jpg,image/jpeg,image/bmp"/>
                 </a>
             </form>
         </div>
         <form class="createForm fl" id="createForm" method="get" action="">
-            <div class="clearfix">
-                <p class="fl">
+            <div class="left fl">
+                <p>
                     <label for="title">演讲标题</label>
                     <input id="title" name="title" type="text">
                 </p>
-                <p class="fl pl40">
-                    <label for="addr">演讲地点</label>
-                    <input id="addr" name="addr" type="text">
-                </p>
-                <p class="fl">
+                <p>
                     <label for="uname">演 讲 人</label>
                     <input class="name" id="uname" name="uname" type="text">
                     <a class="createPeopleBtn" href="#">创建新人物</a>
                 </p>
-                <p class="fl pl40">
+                <p>
+                    <label for="view">演讲观点</label>
+                    <input id="view" name="view" type="text">
+                </p>
+                <p>
+                    <label>三句摘要</label>
+                    <input name="summary1" type="text"><br>
+                    <input name="summary2" type="text" style="margin-left: 84px;"><br>
+                    <input name="summary3" type="text" style="margin-left: 84px;">
+                </p>
+            </div>
+            <div class="right fl">
+                <p>
+                    <label for="subtitle">演讲副标题</label>
+                    <input id="subtitle" name="subtitle" type="text">
+                </p>
+                <p>
+                    <label for="addr">演讲地点</label>
+                    <input id="addr" name="addr" type="text">
+                </p>
+
+                <p>
                     <label for="time">演讲时间</label>
                     <input id="time" name="time" type="text">
                 </p>
+                <p>
+                    <label for="sponsor">主 办 方</label>
+                    <input id="sponsor" name="sponsor" type="text">
+                </p>
             </div>
-            <p>
-                <label for="view">演讲观点</label>
-                <input id="view" name="view" type="text">
-            </p>
-            <p>
-                <label>三句摘要</label>
-                <input name="summary1" type="text"><br>
-                <input name="summary2" type="text" style="margin-left: 74px;"><br>
-                <input name="summary3" type="text" style="margin-left: 74px;">
-            </p>
         </form>
     </div>
     <div class="create-main">
@@ -69,7 +82,7 @@
                 <div class="codebox fl">
                     <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
                     <input class="codeipt" type="text" placeholder="验证码">
-                    <a class="submitBtn" href="javascript:;">提交审核</a>
+                    <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
                 </div>
             </div>
         </div>
@@ -96,66 +109,56 @@
         //实例化编辑器
         var um = UM.getEditor('myEditor');
         //上传文件
-        $('.a-upload input').change(function(){
+        $('.a-upload input').change(function () {
             $("#uploadImg").ajaxSubmit({
+                url: '/api/uploadimg',
+                data: {
+                    type: 'lecture'
+                },
                 type: "POST",
                 success: function (retData) {
-
+                    if (retData.errno == 0) {
+                        $('.a-upload img').attr('src', retData.data);
+                        $('.a-upload span').html('');
+                    } else {
+                        alert('上传出错')
+                    }
                 },
                 error: function (msg) {
                     alert("出错了");
                 }
             });
         })
-        return false;
-        $("#signupForm").validate({
+        $('.createForm').validate({
+            submitHandler: function (form) {
+                alert("submitted");
+                console.log(arguments)
+            },
+            errorElement: 'i',
             rules: {
-                firstname: "required",
-                lastname: "required",
-                username: {
-                    required: true,
-                    minlength: 2
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                "topic[]": {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
+                title: 'required',
+                /*uname: 'required',
+                 view: 'required',
+                 summary1: 'required',
+                 subtitle: 'required',
+                 addr: 'required',
+                 time: 'required',
+                 sponsor: 'required'*/
             },
             messages: {
-                firstname: "请输入您的名字",
-                lastname: "请输入您的姓氏",
-                username: {
-                    required: "请输入用户名",
-                    minlength: "用户名必需由两个字母组成"
-                },
-                password: {
-                    required: "请输入密码",
-                    minlength: "密码长度不能小于 5 个字母"
-                },
-                confirm_password: {
-                    required: "请输入密码",
-                    minlength: "密码长度不能小于 5 个字母",
-                    equalTo: "两次密码输入不一致"
-                },
-                email: "请输入一个正确的邮箱",
-                agree: "请接受我们的声明",
-                topic: "请选择两个主题"
+                title: '*',
+                uname: '*',
+                view: '*',
+                summary1: '*',
+                subtitle: '*',
+                addr: '*',
+                time: '*',
+                sponsor: '*'
             }
         });
+        $('.js-submit').click(function () {
+            $('.createForm').submit()
+        })
     })
 </script>
 </body>

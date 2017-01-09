@@ -1,0 +1,17 @@
+config/server_conf.php
+config/nginx_conf.php
+config/redis_conf.php
+statistics_phone_persistent_*
+logs/*
+.idea/
+data/*
+src/www/auto_load.php
+.idea
+output/
+src/application/views/compiled_tpl/admin*
+src/application/views/compiled_tpl/acl*
+src/www/vuesrc/**/node_modules/
+src/www/vuesrc/**/dist/
+.DS_Store
+._.DS_Store
+*.map

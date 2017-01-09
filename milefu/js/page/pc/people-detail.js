@@ -1,20 +1,12 @@
 /**
- * @author  gaojun-pd on 2016/6/8
+ * @author  Administrator on 2017/1/7
  *
  * @descript
  * @version 1.0
  * @example:
  */
-jQuery(function ($) {
-    $('.slideBox').slide({
-        mainCell: '.bd ul',
-        effect: 'left',
-        autoPlay: true,
-        trigger: 'click',
-        delayTime: 700,
-        vis: 'auto'
-    });
-    $(".people-slide").slide({delayTime: 0});
+$(function () {
+    $(".slideBox").slide({trigger: 'click', delayTime: 200});
 
     //这是一个非常简单的demo实例，让列表元素分页显示
     //回调函数的作用是显示对应分页的列表项内容
@@ -33,7 +25,6 @@ jQuery(function ($) {
     }();
 
     function pageselectCallback(page_index, jq) {
-
         return false;
     }
 })

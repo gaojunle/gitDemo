@@ -239,8 +239,9 @@ a, a:hover {
 input, select {
     -webkit-appearance: none;
     appearance: none;
+    outline: none;
 }
-
+input:focus {border: 1px solid #c0c0c0 !important;}
 select {
     border: none
 }
@@ -249,36 +250,6 @@ html, body {
     width: 100%;
     margin: 0px;
     padding: 0px;
-    background: white;
+    background: #fcfcfc;
     font-family: 'Hiragino Sans GB', 'Microsoft Yahei', SimSun, Arial, 'Helvetica Neue', Helvetica;
 }
-
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
-
-.clearfix {
-    display: block;
-}
-
-.hide{display: none !important;}
-.icon{
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-}
-.ellipsis{
-    overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.fl{float: left;  }
-.fr{float: right;}
-.tc{text-align: center}
-.tr{text-align: right}

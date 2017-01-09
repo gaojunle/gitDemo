@@ -1,0 +1,172 @@
+body{
+    background: #f6f9ff;
+}
+.contbox{
+    background: white;
+}
+
+
+.people-list-box {
+    padding: 0px 20px;
+    border: 1px solid #dcdcdc;
+}
+
+.labels {
+    padding: 10px 0px 30px;
+}
+
+.labels a, .select-labels a {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid rgb(94, 156, 255);
+    border-radius: 10px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    padding: 0px 12px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.labels a.on {
+    color: #5e9cff;
+}
+
+.select-labels {
+    border: 1px solid rgb(94, 156, 255);
+    padding: 20px;
+    padding-top: 0px;
+}
+.select-labels a{
+    color: #5e9cff;
+}
+.select-labels .p-sipt {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.select-labels .p-sipt .s-ipt {
+    border-radius: 10px;
+    background-color: rgb(94, 156, 255);
+    width: 244px;
+    height: 47px;
+    line-height: 47px;
+    border: 1px solid rgb(94, 156, 255);
+    text-align: center;
+    color: white;
+}
+
+.select-labels .icon-search {
+    margin-left: 20px;
+}
+.peolist{
+    margin-bottom: 20px;
+}
+.peolist .head-icon {
+    display: inline-block;
+    width: 68px;
+    height: 68px;
+}
+.peolist li {
+    margin-top: 30px;
+}
+
+.desc {
+    position: relative;
+    color: #313131;
+    background: url("../../../img/pc/people/list-bg-trangle.png") 0px 0px no-repeat;
+    background-size: contain;
+    width: 870px;
+    height: 207px;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.desc .zhejiao{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.desc .name {
+    font-size: 28px;
+    color: #5e9cff;
+}
+
+.desc .en-name {
+    font-size: 20px;
+}
+
+.desc .post {
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.desc .focus {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    cursor: pointer;
+}
+
+.desc .focus i {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url("../../../img/pc/unfocus.png") center center no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.desc .focus.on i {
+    background: url("../../../img/pc/focus.png") center center no-repeat;
+    background-size: contain;
+}
+.desc .info {
+    margin-top: 10px;
+}
+
+.desc .info p {
+    padding: 2px;
+}
+
+.desc .info p label {
+    display: inline-block;
+    width: 40%;
+}
+
+.desc .line {
+    width: 98%;
+    margin: 18px auto;
+    height: 1px;
+    background: rgb(94, 156, 255);
+}
+
+.desc .about img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.desc .about .status {
+    display: inline-block;
+    width: 48%;
+}
+
+.desc .about .status span {
+    margin-right: 20px;
+}
+
+.desc .about .hot-view {
+    display: inline-block;
+    width: 50%;
+}
+.desc .about .hot-view span {
+    display: inline-block;
+    background: #5e9cff;
+    padding: 1px 5px;
+    margin: 0px 5px;
+    color: white;
+    font-size: 13px;
+}

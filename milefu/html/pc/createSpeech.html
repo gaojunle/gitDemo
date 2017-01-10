@@ -23,9 +23,9 @@
         <div class="head-pic fl">
             <form enctype="multipart/form-data" id="uploadImg" method="post" action="">
                 <a href="javascript:;" class="a-upload">
-                    <span>点击上传标题</span>
                     <img src="../../img/pc/upload-default.png" alt="">
                     <input name="imgFile" type="file" accept="image/png,image/gif,image/jpg,image/jpeg,image/bmp"/>
+                    <span>点击上传演讲图片</span>
                 </a>
             </form>
         </div>
@@ -33,16 +33,23 @@
             <div class="left fl">
                 <p>
                     <label for="title">演讲标题</label>
-                    <input id="title" name="title" type="text">
+                    <input id="title" name="title" type="text" placeholder="必填">
                 </p>
                 <p>
                     <label for="uname">演 讲 人</label>
-                    <input class="name" id="uname" name="uname" type="text">
-                    <a class="createPeopleBtn" href="#">创建新人物</a>
+                    <input class="name" id="uname" name="uname" type="text" placeholder="必填">
+                    <a class="createPeopleBtn" href="./createPeople.html">创建新人物</a>
                 </p>
                 <p>
+                    <style>
+                        .createForm .views{
+                            width: 55px;
+                        }
+                    </style>
                     <label for="view">演讲观点</label>
-                    <input id="view" name="view" type="text">
+                    <input class="views js-mark-list" id="view" name="view" type="text" placeholder="观点一">
+                    <input class="views js-mark-list" name="view" type="text" placeholder="观点二">
+                    <input class="views js-mark-list" name="view" type="text" placeholder="观点三">
                 </p>
                 <p>
                     <label>三句摘要</label>
@@ -50,6 +57,14 @@
                     <input name="summary2" type="text" style="margin-left: 84px;"><br>
                     <input name="summary3" type="text" style="margin-left: 84px;">
                 </p>
+                <ul class="peomark-list">
+                    <li>a</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                </ul>
             </div>
             <div class="right fl">
                 <p>
@@ -63,7 +78,7 @@
 
                 <p>
                     <label for="time">演讲时间</label>
-                    <input id="time" name="time" type="text">
+                    <input id="time" name="time" type="text" placeholder="必填">
                 </p>
                 <p>
                     <label for="sponsor">主 办 方</label>
@@ -78,7 +93,6 @@
 
             <div id="myEditor"></div>
             <div class="submitbox clearfix">
-                <a class="prePage fl" href="#">返回上页</a>
                 <div class="codebox fl">
                     <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
                     <input class="codeipt" type="text" placeholder="验证码">
@@ -100,11 +114,6 @@
 <script type="text/javascript" src="../../js/base.js"></script>
 <script type="text/javascript" src="../../js/page/pc/create.js"></script>
 <script>
-    $.validator.setDefaults({
-        submitHandler: function () {
-            alert("提交事件!");
-        }
-    });
     jQuery(function ($) {
         //实例化编辑器
         var um = UM.getEditor('myEditor');
@@ -128,37 +137,81 @@
                     alert("出错了");
                 }
             });
-        })
+        });
+
+        //观点选择
+        var $iptPeoMark = $('.js-mark-list'),
+            $peomarkList = $('.peomark-list'),
+            $curIpt = null;
+
+        $iptPeoMark.focus(function () {
+            $curIpt = $(this);
+            $peomarkList.css('top', $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top).show();
+        }).blur(function () {
+            $peomarkList.hide(200);
+        }).keyup(function (e) {
+            $peomarkList.find('li').show();
+            $peomarkList.find('li:not(:contains("' + $(this).val() + '"))').hide();
+        }).click(function () {
+            return false;
+        });
+        $peomarkList.on('click', 'li', function () {
+            var $this = $(this);
+            $curIpt.val($this.html()).data('markid', $this.data('markid'));
+            $peomarkList.hide();
+            return false;
+        });
+        $(document).click(function () {
+            $peomarkList.fadeOut();
+        });
+
+        //表单验证
         $('.createForm').validate({
             submitHandler: function (form) {
-                alert("submitted");
-                console.log(arguments)
+                var lables = [];
+                $('.js-peomark-list').each(function () {
+                    if ($(this).data('markid')) {
+                        lables.push($(this).data('markid'))
+                    }
+                });
+
+                if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
+                    alert('请上传用户图片');
+                    return false;
+                }
+                var data = $.extend({}, {
+                    avatar: $('.a-upload img').attr('src'),
+                    birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
+                    labels: lables.join(','),
+                    captcha: $('.codeipt').val(),
+                    intro: um.getContent()
+                }, $('#createForm').serializeJson());
+
+                console.log(data);
+
+                $.post('api/submitcelebrity', data, function (retData) {
+                    if (retData.errno == 0) {
+                        location.href = './mycreate.html';
+                    } else {
+                        alert(retData.errmsg)
+                    }
+                });
             },
             errorElement: 'i',
             rules: {
-                title: 'required',
-                /*uname: 'required',
-                 view: 'required',
-                 summary1: 'required',
-                 subtitle: 'required',
-                 addr: 'required',
-                 time: 'required',
-                 sponsor: 'required'*/
+                nameCn: 'required',
+                birthday: 'required'
             },
             messages: {
-                title: '*',
-                uname: '*',
-                view: '*',
-                summary1: '*',
-                subtitle: '*',
-                addr: '*',
-                time: '*',
-                sponsor: '*'
+                nameCn: '*',
+                birthday: '*'
             }
         });
+
+        //提交
         $('.js-submit').click(function () {
             $('.createForm').submit()
-        })
+        });
     })
 </script>
 </body>

@@ -78,14 +78,15 @@ a {
     float: left;
 }
 
-.header .nav li {
+.header .nav > li {
+    position: relative;
     padding: 0px;
     margin: 0px 10px;
     list-style: none;
     float: left;
 }
 
-.header .nav li a {
+.header .nav > li a {
     color: #222;
     display: inline-block;
     padding: 5px 20px;
@@ -96,6 +97,21 @@ a {
 
 .header .nav li a:hover, .header .nav li.on a {
     border: 1px solid #5e9cff;
+}
+
+.header .nav li ul {
+    display: none;
+    width: 108px;
+    position: absolute;
+    line-height: 1.2;
+    background: white;
+    top: 53px;
+    border: 1px solid #dcdcdc;
+    left: 0px;
+}
+
+.header .nav li:hover ul {
+    display: block;
 }
 
 .header .search {
@@ -248,4 +264,27 @@ a {
     font-style: normal;
     margin: 0px 2px;
     vertical-align: middle;
+}
+
+/*编辑器*/
+.edui-editor-body .edui-body-container {
+    padding: 3px 20px !important;
+}
+
+.edui-editor-body .edui-body-container ul, .edui-editor-body .edui-body-container ol {
+    padding: inherit;
+    list-style: inherit;
+    margin: auto;
+}
+
+.edui-editor-body .edui-body-container ul li {
+    padding: inherit;
+    list-style: inherit;
+    margin: auto;
+}
+
+.edui-editor-body .edui-body-container ol li {
+    padding: inherit;
+    list-style: decimal;
+    margin: auto;
 }

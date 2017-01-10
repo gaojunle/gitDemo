@@ -1,0 +1,29 @@
+获取人物验证码接口
+	http://106.75.72.156/api/getcaptcha?type=celebrity
+上传图片接口
+	http://106.75.72.156/api/uploadimg
+前台用户
+	创建人物接口:
+	http://106.75.72.156/api/submitcelebrity?nameCn=王超&nameEn=wchao&role=程序员&career=程序员&nationality=中国&birthplace=河南&birthday=1991-12-06&college=西北工业大学&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
+	
+	更新人物接口:
+	http://106.75.72.156/api/submitcelebrity?celebrityId=3&nameCn=王超&nameEn=wchao&role=程序员&career=程序员&nationality=中国&birthplace=河南&birthday=1991-12-06&college=西北工业大学&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
+
+	获取人物详情:
+	http://106.75.72.156/api/getcelebrityinfo?celebrityId=9
+
+后台管理员
+	获取审核人物列表:
+	http://106.75.72.156/mis/api/getmyapplylist?type=celebrity&pageNum=1&count=10
+	获取审核人物详情:
+	http://106.75.72.156/mis/api/getmyapplyInfo?myapplyId=1
+	审核人物接口:
+	http://106.75.72.156/mis/api/submitcelebrity?myapplyId=1&applyStatus=2&nameCn=%E7%8E%8B%E8%B6%85&nameEn=wchao&role=%E7%A8%8B%E5%BA%8F%E5%91%98&career=%E7%A8%8B%E5%BA%8F%E5%91%98&nationality=%E4%B8%AD%E5%9B%BD&birthplace=%E6%B2%B3%E5%8D%97&birthday=1991-12-06&college=%E8%A5%BF%E5%8C%97%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
+	编辑人物接口:
+	http://106.75.72.156/mis/api/submitcelebrity?celebrityId=10&status=1&nameCn=%E7%8E%8B%E8%B6%85%E8%B6%85&nameEn=wchao&role=%E7%A8%8B%E5%BA%8F%E5%91%98&career=%E7%A8%8B%E5%BA%8F%E5%91%98&nationality=%E4%B8%AD%E5%9B%BD&birthplace=%E6%B2%B3%E5%8D%97&birthday=1991-12-06&college=%E8%A5%BF%E5%8C%97%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
+我的创建
+	获取我创建的人物列表:
+	http://106.75.72.156/api/getmyapplylist?type=celebrity&pageNum=1&count=10   
+	获取我创建的人物详情:
+	http://106.75.72.156/api/getmyapplyinfo?myapplyId=1
+

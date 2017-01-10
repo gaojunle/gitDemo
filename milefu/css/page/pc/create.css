@@ -42,12 +42,12 @@ body {
     top: 0;
     opacity: 0;
     filter: alpha(opacity=0);
-    cursor: pointer
+    cursor: pointer;
+    z-index: 100;
 }
 
 .a-upload span {
     position: relative;
-    z-index: 100;
 }
 
 .a-upload img {
@@ -60,6 +60,7 @@ body {
 
 .createForm {
     width: 658px;
+    position: relative;
     margin-left: 40px;
 }
 
@@ -115,6 +116,28 @@ body {
     vertical-align: middle;
 }
 
+.createForm .left .peomark-list {
+    display: none;
+    position: absolute;
+    width: 210px;
+    top: 148px;
+    left: 84px;
+    color: #313131;
+    border: 1px solid #dcdcdc;
+    background: white;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.createForm .left .peomark-list li {
+    padding: 5px 10px;
+}
+
+.createForm .left .peomark-list li:hover {
+    background: #5e9cff;
+    color: white;
+}
+
 .pl40 {
     padding-left: 40px;
     box-sizing: border-box;
@@ -160,7 +183,7 @@ body {
 }
 
 .submitbox .codebox {
-    margin-left: 370px;
+    float: right;
 }
 
 .submitbox .codebox .imgcode {
@@ -191,4 +214,16 @@ body {
     height: 300px;
     padding: 20px;
     box-sizing: border-box
+}
+
+#cityselect {
+
+}
+
+#cityselect select {
+    color: #313131;
+    width: 103px;
+    font-size: 14px;
+    padding-left: 10px;
+    line-height: 1.6;
 }

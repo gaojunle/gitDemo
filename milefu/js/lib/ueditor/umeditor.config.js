@@ -144,7 +144,7 @@
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         ,toolbar:[
             'undo redo | bold italic strikethrough forecolor |',
-            'insertorderedlist insertunorderedlist | paragraph fontfamily fontsize' ,
+            'insertorderedlist insertunorderedlist' ,
             '| justifyleft justifycenter justifyright justifyjustify |',
             'link unlink '
         ]

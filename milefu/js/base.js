@@ -23,6 +23,7 @@ jQuery(function ($) {
                 success: function (data) {
                     $('#header').append(data);
                     Base._doCallBackFun(callFun);
+                    Base.setCurTitle()
                 },
                 error: function () {
                     console.log("加载资源失败");
@@ -118,6 +119,17 @@ jQuery(function ($) {
             });
         },
 
+        //切换标题
+        setCurTitle: function () {
+            var curTitle = location.pathname.substr(location.pathname.lastIndexOf('/') + 1);
+            var $curLink = $('.nav .main-link[href$="' + curTitle + '"]');
+            if ($curLink.length > 0) {
+                $curLink.parent().addClass('on');
+            }else{
+                $('.nav li').eq(0).addClass('on');
+            }
+        },
+
         //执行回调函数
         _doCallBackFun: function (callFun, params) {
             if (callFun && $.isFunction(callFun)) {
@@ -128,4 +140,21 @@ jQuery(function ($) {
         }
     }
     Base.init();
+    $.fn.serializeJson = function () {
+        var serializeObj = {};
+        var array = this.serializeArray();
+        var str = this.serialize();
+        $(array).each(function () {
+            if (serializeObj[this.name]) {
+                if ($.isArray(serializeObj[this.name])) {
+                    serializeObj[this.name].push(this.value);
+                } else {
+                    serializeObj[this.name] = [serializeObj[this.name], this.value];
+                }
+            } else {
+                serializeObj[this.name] = this.value;
+            }
+        });
+        return serializeObj;
+    };
 });

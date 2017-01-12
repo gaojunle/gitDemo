@@ -130,3 +130,26 @@ jQuery(function ($) {
         return serializeObj;
     };
 });
+$._get = function (url, data, callback) {
+    $.get(url, data || {}, function (retData) {
+        if (retData.errno == 0) {
+            if (callback && $.isFunction(callback)) {
+                callback(retData);
+            }
+        } else {
+            console.error(retData.errmsg);
+        }
+    })
+}
+
+$._post = function (url, data, callback) {
+    $.post(url, data || {}, function (retData) {
+        if (retData.errno == 0) {
+            if (callback && $.isFunction(callback)) {
+                callback(retData);
+            }
+        } else {
+            alert(retData.errmsg);
+        }
+    })
+}

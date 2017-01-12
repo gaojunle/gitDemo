@@ -1,0 +1,303 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>米乐弗-编辑人物</title>
+    <link rel="stylesheet" href="../../css/common/normalize.css">
+    <link rel="stylesheet" href="../../css/common/common.css">
+    <link rel="stylesheet" href="../../css/common/pagination.css">
+    <link rel="stylesheet" href="../../css/common/laydate.css">
+    <link rel="stylesheet" href="../../js/lib/ueditor/themes/default/css/umeditor.css">
+    <link rel="stylesheet" href="../../css/page/pc/create.css">
+</head>
+<body>
+<div id="header"></div>
+<div class="contbox ">
+    <div class="title">
+        <span class="triangle triangle-left"></span><span>编辑人物</span><span class="triangle triangle-right"></span>
+    </div>
+    <div class="formbox clearfix">
+        <div class="head-pic fl">
+            <form enctype="multipart/form-data" id="uploadImg" method="post" action="">
+                <a href="javascript:;" class="a-upload">
+                    <img src="../../img/pc/upload-default.png" alt="">
+                    <input name="imgFile" type="file" accept="image/png,image/gif,image/jpg,image/jpeg,image/bmp"/>
+                    <span>点击上传头像</span>
+                </a>
+            </form>
+        </div>
+
+        <form class="createForm fl" id="createForm" method="get" action="">
+            <div class="left fl">
+                <p>
+                    <label for="nameCn" class="text-justify">中 文 名</label>
+                    <input id="nameCn" name="nameCn" type="text" placeholder="必填">
+                </p>
+                <p>
+                    <label for="role">主要身份</label>
+                    <input id="role" name="role" type="text" placeholder="选填">
+                </p>
+                <p>
+                    <label for="career">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</label>
+                    <input id="career" name="career" type="text" placeholder="选填">
+                </p>
+                <p>
+                    <label>人物标签</label>
+                    <input name="labels" type="text" class="js-mark-list" placeholder="标签一"><br>
+                    <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+                           placeholder="标签二"><br>
+                    <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+                           placeholder="标签三">
+                </p>
+                <ul class="peomark-list">
+                    <li>a</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                    <li>小明</li>
+                </ul>
+            </div>
+            <div class="right fl">
+                <p id="cityselect">
+                    <label>出 生 地</label>
+                    <select data-default="请选择" class="prov mochen-select" name='userProvince'>
+                        <option value="-1" selected="selected">请选择</option>
+                    </select>
+                    <select data-default="请选择" class="city mochen-select" name='userCity'>
+                        <option value="-1" selected="selected">请选择</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="birthday">出生日期</label>
+                    <input id="birthday" name="birthday" type="text" placeholder="请选择">
+                </p>
+
+                <p>
+                    <label for="college">毕业学校</label>
+                    <input id="college" name="college" type="text" placeholder="选填">
+                </p>
+                <p>
+                    <label for="nationality">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍</label>
+                    <input id="nationality" name="nationality" type="text" placeholder="选填">
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="create-main">
+        <div class="cont">
+            <h4 class="c-title">人物介绍（选填）</h4>
+
+            <!--<textarea id="myEditor" name="peop-desc-ipt" class="peop-desc-ipt"></textarea>-->
+            <div id="myEditor"></div>
+            <div class="submitbox clearfix">
+                <div class="codebox fl">
+                    <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
+                    <input class="codeipt" type="text" placeholder="验证码">
+                    <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+<script type="text/html">
+    <form class="createForm fl" id="createForm" method="get" action="">
+        <div class="left fl">
+            <p>
+                <label for="nameCn" class="text-justify">中 文 名</label>
+                <input id="nameCn" name="nameCn" type="text" placeholder="必填" value="{{nameCn}}">
+            </p>
+            <p>
+                <label for="role">主要身份</label>
+                <input id="role" name="role" type="text" placeholder="选填" value="role">
+            </p>
+            <p>
+                <label for="career">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</label>
+                <input id="career" name="career" type="text" placeholder="选填" value="{{career}}">
+            </p>
+            <p>
+                <label>人物标签</label>
+                <input name="labels" type="text" class="js-mark-list" placeholder="标签一"><br>
+                <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+                       placeholder="标签二"><br>
+                <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+                       placeholder="标签三">
+            </p>
+            <ul class="peomark-list"></ul>
+        </div>
+        <div class="right fl">
+            <p id="cityselect">
+                <label>出 生 地</label>
+                <select data-default="请选择" class="prov mochen-select" name='userProvince'>
+                    <option value="-1" selected="selected">请选择</option>
+                </select>
+                <select data-default="请选择" class="city mochen-select" name='userCity'>
+                    <option value="-1" selected="selected">请选择</option>
+                </select>
+            </p>
+            <p>
+                <label for="birthday">出生日期</label>
+                <input id="birthday" name="birthday" type="text" placeholder="请选择" value="{{birthday}}">
+            </p>
+
+            <p>
+                <label for="college">毕业学校</label>
+                <input id="college" name="college" type="text" placeholder="选填" value="{{college}}">
+            </p>
+            <p>
+                <label for="nationality">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍</label>
+                <input id="nationality" name="nationality" type="text" placeholder="选填" value="{{nationality}}">
+            </p>
+        </div>
+    </form>
+</script>
+<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.form.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.cityselect.js"></script>
+<script type="text/javascript" src="../../js/lib/laydate.js"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="../../js/lib/util.js"></script>
+<script type="text/javascript" src="./lib/template7.min.js"></script>
+<script type="text/javascript" src="../../js/base.js"></script>
+<script type="text/javascript" src="../../js/page/pc/create.js"></script>
+
+<script>
+    jQuery(function ($) {
+        if (Util.getQueryString('id')) {
+            $.get('/api/getcelebrityinfo', {
+                celebrityId: Util.getQueryString('id')
+            }, function (retData) {
+                var d = retData.data;
+                $('.a-upload img').attr('src', d.avatar);
+                $('.a-upload span').html('');
+
+                //实例化编辑器
+                var um = UM.getEditor('myEditor');
+                um.setContent(d.intro);
+                //城市选择
+                $("#cityselect").citySelect({
+                    prov: '北京',
+                    city: '东城区',
+                    required: false
+                });
+
+                //日期选择
+                laydate({
+                    elem: '#birthday',
+                    min: '',
+                    max: laydate.now(),
+                    choose: function (datas) {
+                        //start.max = datas;
+                    }
+                });
+
+                //人物标签选择
+                var $iptPeoMark = $('.js-mark-list'),
+                    $peomarkList = $('.peomark-list'),
+                    $curIpt = null;
+
+                $iptPeoMark.focus(function () {
+                    $curIpt = $(this);
+                    $peomarkList.css('top', $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top).show();
+                }).blur(function () {
+                    $peomarkList.hide(200);
+                }).keyup(function (e) {
+                    $peomarkList.find('li').show();
+                    $peomarkList.find('li:not(:contains("' + $(this).val() + '"))').hide();
+                }).click(function () {
+                    return false;
+                });
+                $peomarkList.on('click', 'li', function () {
+                    var $this = $(this);
+                    $curIpt.val($this.html()).data('markid', $this.data('markid'));
+                    $peomarkList.hide();
+                    return false;
+                });
+                $(document).click(function () {
+                    $peomarkList.fadeOut();
+                });
+
+                //上传文件
+                $('.a-upload input').change(function () {
+                    $("#uploadImg").ajaxSubmit({
+                        url: '/api/uploadimg',
+                        data: {
+                            type: 'celebrity'
+                        },
+                        type: "POST",
+                        success: function (retData) {
+                            if (retData.errno == 0) {
+                                $('.a-upload img').attr('src', retData.data);
+                                $('.a-upload span').html('');
+                            } else {
+                                alert('上传出错')
+                            }
+                        },
+                        error: function (msg) {
+                            alert("出错了");
+                        }
+                    });
+                });
+
+                //表单验证
+                $('.createForm').validate({
+                    submitHandler: function (form) {
+                        var labels = [];
+                        $('.js-mark-list').each(function () {
+                            if ($(this).data('markid')) {
+                                labels.push($(this).data('markid'))
+                            }
+                        });
+
+                        if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
+                            alert('请上传用户图片');
+                            return false;
+                        }
+                        var data = $.extend({}, {
+                            avatar: $('.a-upload img').attr('src'),
+                            birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
+                            labels: labels.join(','),
+                            captcha: $('.codeipt').val(),
+                            intro: um.getContent()
+                        }, $('#createForm').serializeJson());
+
+                        console.log(data);
+
+                        $.post('/api/submitcelebrity', data, function (retData) {
+                            if (retData.errno == 0) {
+                                location.href = './mycreate.html';
+                            } else {
+                                alert(retData.errmsg)
+                            }
+                        });
+                    },
+                    errorElement: 'i',
+                    rules: {
+                        nameCn: 'required',
+                        birthday: 'required'
+                    },
+                    messages: {
+                        nameCn: '*',
+                        birthday: '*'
+                    }
+                });
+
+                //提交
+                $('.js-submit').click(function () {
+                    $('.createForm').submit()
+                });
+            })
+        }
+
+    })
+</script>
+</body>
+</html>

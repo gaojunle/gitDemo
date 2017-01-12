@@ -232,6 +232,23 @@
     </div>
 </div>
 <div id="footer"></div>
+<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.pagination.js"></script>
+<script type="text/javascript" src="../../js/base.js"></script>
+<script>
+    var initPagination = function () {
+        // 创建分页
+        $("#Pagination").pagination(40, {
+            num_edge_entries: 5, //边缘页数
+            num_display_entries: 4, //主体页数
+            callback: function () {
 
+            },
+            prev_text: "< 上一页",
+            next_text: "下一页 >",
+            items_per_page: 3 //每页显示1项
+        });
+    }();
+</script>
 </body>
 </html>

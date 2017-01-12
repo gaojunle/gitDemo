@@ -1,10 +1,10 @@
 获取人物验证码接口
-	http://106.75.72.156/api/getcaptcha?type=celebrity
+	-> http://106.75.72.156/api/getcaptcha?type=celebrity
 上传图片接口
-	http://106.75.72.156/api/uploadimg
+	-> http://106.75.72.156/api/uploadimg
 前台用户
 	创建人物接口:
-	http://106.75.72.156/api/submitcelebrity?nameCn=王超&nameEn=wchao&role=程序员&career=程序员&nationality=中国&birthplace=河南&birthday=1991-12-06&college=西北工业大学&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
+	-> http://106.75.72.156/api/submitcelebrity?nameCn=王超&nameEn=wchao&role=程序员&career=程序员&nationality=中国&birthplace=河南&birthday=1991-12-06&college=西北工业大学&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
 	
 	更新人物接口:
 	http://106.75.72.156/api/submitcelebrity?celebrityId=3&nameCn=王超&nameEn=wchao&role=程序员&career=程序员&nationality=中国&birthplace=河南&birthday=1991-12-06&college=西北工业大学&intro=&avatar=http%3A%2F%2F106.75.72.156%2Fimg%2Fupload%2F0%2F0528fe3e873f2e3118e33ef172e4fa82_dog.gif
@@ -14,7 +14,7 @@
 
 后台管理员
 	获取审核人物列表:
-	http://106.75.72.156/mis/api/getmyapplylist?type=celebrity&pageNum=1&count=10
+	-> http://106.75.72.156/mis/api/getmyapplylist?type=celebrity&pageNum=1&count=10
 	获取审核人物详情:
 	http://106.75.72.156/mis/api/getmyapplyInfo?myapplyId=1
 	审核人物接口:

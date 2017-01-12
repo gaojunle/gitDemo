@@ -197,10 +197,10 @@
         //表单验证
         $('.createForm').validate({
             submitHandler: function (form) {
-                var lables = [];
+                var labels = [];
                 $('.js-mark-list').each(function () {
                     if ($(this).data('markid')) {
-                        lables.push($(this).data('markid'))
+                        labels.push($(this).data('markid'))
                     }
                 });
 
@@ -211,7 +211,7 @@
                 var data = $.extend({}, {
                     avatar: $('.a-upload img').attr('src'),
                     birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
-                    labels: lables.join(','),
+                    labels: labels.join(','),
                     captcha: $('.codeipt').val(),
                     intro: um.getContent()
                 }, $('#createForm').serializeJson());

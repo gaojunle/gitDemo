@@ -132,12 +132,38 @@
     border-bottom-right-radius: 10px;
     background-color: rgb(94, 156, 255);
     text-align: center;
+    cursor: pointer;
 }
 
 .peop-desc span {
     font-size: 20px;
     color: white;
 }
+
+.peop-desc img {
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    transition: transform .5s ease, -webkit-transform .5s ease;
+}
+
+.peop-desc img.on {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.peop-desc-cont {
+    display: none;
+    width: 940px;
+    margin: 0px auto;
+    background: white;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #dcdcdc;
+    text-indent: 2rem;
+    line-height: 1.8;
+}
+
 /*slider*/
 .slideBox {
     margin-top: 30px;

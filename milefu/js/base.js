@@ -16,7 +16,7 @@ jQuery(function ($) {
         },
         //加载头部
         loadHeader: function (callFun) {
-            if($('#header').length == 0){
+            if ($('#header').length == 0) {
                 return false;
             }
             $.ajax({
@@ -37,7 +37,7 @@ jQuery(function ($) {
 
         //加载尾
         loadFooter: function (callFun) {
-            if($('#footer').length == 0){
+            if ($('#footer').length == 0) {
                 return false;
             }
             $.ajax({
@@ -167,4 +167,11 @@ $._post = function (url, data, callback) {
             alert(retData.errmsg);
         }
     })
+}
+function TemplateRenderData(data, templateEle, dataBoxEle) {
+    var template = $(templateEle).html();
+    var compiledTemplate = Template7.compile(template);
+    var html = compiledTemplate(data);
+
+    $(dataBoxEle).html(html);
 }

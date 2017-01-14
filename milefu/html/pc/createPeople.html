@@ -53,14 +53,7 @@
                     <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
                            placeholder="标签三">
                 </p>
-                <ul class="peomark-list">
-                    <li>a</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                </ul>
+                <ul class="peomark-list"></ul>
             </div>
             <div class="right fl">
                 <p id="cityselect">
@@ -106,6 +99,60 @@
 </div>
 <div id="footer"></div>
 
+<script type="text/html" id="edit-people-tpl">
+    <div class="left fl">
+        <p>
+            <label for="nameCn" class="text-justify">中 文 名</label>
+            <input id="nameCn" name="nameCn" type="text" placeholder="必填" value="{{nameCn}}">
+        </p>
+        <p>
+            <label for="role">主要身份</label>
+            <input id="role" name="role" type="text" placeholder="选填" value="role">
+        </p>
+        <p>
+            <label for="career">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</label>
+            <input id="career" name="career" type="text" placeholder="选填" value="{{career}}">
+        </p>
+        <p>
+            <label>人物标签</label>
+            <input name="label" type="text" class="js-mark-list" placeholder="标签一"><br>
+            <input name="label" type="text" class="js-mark-list" style="margin-left: 84px;"
+                   placeholder="标签二"><br>
+            <input name="label" type="text" class="js-mark-list" style="margin-left: 84px;"
+                   placeholder="标签三">
+        </p>
+        <ul class="peomark-list"></ul>
+    </div>
+    <div class="right fl">
+        <p id="cityselect">
+            <label>出 生 地</label>
+            <select data-default="请选择" class="prov mochen-select" name='userProvince'>
+                <option value="-1" selected="selected">请选择</option>
+            </select>
+            <select data-default="请选择" class="city mochen-select" name='userCity'>
+                <option value="-1" selected="selected">请选择</option>
+            </select>
+        </p>
+        <p>
+            <label for="birthday">出生日期</label>
+            <input id="birthday" name="birthday" type="text" placeholder="请选择" value="{{birthday}}">
+        </p>
+
+        <p>
+            <label for="college">毕业学校</label>
+            <input id="college" name="college" type="text" placeholder="选填" value="{{college}}">
+        </p>
+        <p>
+            <label for="nationality">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍</label>
+            <input id="nationality" name="nationality" type="text" placeholder="选填" value="{{nationality}}">
+        </p>
+    </div>
+</script>
+<script type="text/html" id="labal-list-tpl">
+    {{#each data}}
+    <li data-id="{{id}}">{{name}}</li>
+    {{/each}}
+</script>
 <script type="text/javascript" src="../../js/lib/jquery.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/jquery.validate.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/jquery.form.min.js?_v=<?=$ver?>"></script>
@@ -114,134 +161,9 @@
 <script type="text/javascript" src="../../js/lib/ueditor/umeditor.config.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/template7.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/util.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/base.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/page/pc/create.js?_v=<?=$ver?>"></script>
-<script>
-    jQuery(function ($) {
-        if (Util.getQueryString('celebrityId')) {
-            $.get('/api/getcelebrityinfo', {
-                celebrityId: Util.getQueryString('celebrityId')
-            }, function (retData) {
-                var d = retData.data;
-
-            })
-        }
-        //实例化编辑器
-        var um = UM.getEditor('myEditor');
-        //城市选择
-        $("#cityselect").citySelect({
-            prov: '北京',
-            city: '东城区',
-            required: false
-        });
-
-        //日期选择
-        laydate({
-            elem: '#birthday',
-            min: '',
-            max: laydate.now(),
-            choose: function (datas) {
-                //start.max = datas;
-            }
-        });
-
-        //人物标签选择
-        var $iptPeoMark = $('.js-mark-list'),
-            $peomarkList = $('.peomark-list'),
-            $curIpt = null;
-
-        $iptPeoMark.focus(function () {
-            $curIpt = $(this);
-            $peomarkList.css('top', $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top).show();
-        }).blur(function () {
-            $peomarkList.hide(200);
-        }).keyup(function (e) {
-            $peomarkList.find('li').show();
-            $peomarkList.find('li:not(:contains("' + $(this).val() + '"))').hide();
-        }).click(function () {
-            return false;
-        });
-        $peomarkList.on('click', 'li', function () {
-            var $this = $(this);
-            $curIpt.val($this.html()).data('markid', $this.data('markid'));
-            $peomarkList.hide();
-            return false;
-        });
-        $(document).click(function () {
-            $peomarkList.fadeOut();
-        });
-
-        //上传文件
-        $('.a-upload input').change(function () {
-            $("#uploadImg").ajaxSubmit({
-                url: '/api/uploadimg',
-                data: {
-                    type: 'celebrity'
-                },
-                type: "POST",
-                success: function (retData) {
-                    if (retData.errno == 0) {
-                        $('.a-upload img').attr('src', retData.data);
-                        $('.a-upload span').html('');
-                    } else {
-                        alert('上传出错')
-                    }
-                },
-                error: function (msg) {
-                    alert("出错了");
-                }
-            });
-        });
-
-        //表单验证
-        $('.createForm').validate({
-            submitHandler: function (form) {
-                var labels = [];
-                $('.js-mark-list').each(function () {
-                    if ($(this).data('markid')) {
-                        labels.push($(this).data('markid'))
-                    }
-                });
-
-                if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
-                    alert('请上传用户图片');
-                    return false;
-                }
-                var data = $.extend({}, {
-                    avatar: $('.a-upload img').attr('src'),
-                    birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
-                    labels: labels.join(','),
-                    captcha: $('.codeipt').val(),
-                    intro: um.getContent()
-                }, $('#createForm').serializeJson());
-
-                console.log(data);
-
-                $.post('/api/submitcelebrity', data, function (retData) {
-                    if (retData.errno == 0) {
-                        location.href = './mycreate.html';
-                    } else {
-                        alert(retData.errmsg)
-                    }
-                });
-            },
-            errorElement: 'i',
-            rules: {
-                nameCn: 'required',
-                birthday: 'required'
-            },
-            messages: {
-                nameCn: '*',
-                birthday: '*'
-            }
-        });
-
-        //提交
-        $('.js-submit').click(function () {
-            $('.createForm').submit()
-        });
-    })
-</script>
 </body>
 </html>

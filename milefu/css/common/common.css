@@ -95,7 +95,7 @@ a {
     font-size: 16px;
 }
 
-.header .nav li a:hover, .header .nav li.on a {
+.header .nav li a:hover, .header .nav li.on > a {
     border: 1px solid #5e9cff;
 }
 

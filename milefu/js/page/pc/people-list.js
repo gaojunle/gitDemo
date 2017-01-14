@@ -64,7 +64,7 @@ jQuery(function ($) {
                 var html = compiledTemplate(retData);
 
                 $('.js-labels').html(html);
-            })
+            });
         },
 
         //加载人物列表

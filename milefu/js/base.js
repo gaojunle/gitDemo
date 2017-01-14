@@ -12,9 +12,13 @@ jQuery(function ($) {
                 Base.initWChatLogin();
             });
             this.loadFooter();
+            this.bindChangeCodeImg();
         },
         //加载头部
         loadHeader: function (callFun) {
+            if($('#header').length == 0){
+                return false;
+            }
             $.ajax({
                 type: "GET",
                 url: './_header.html',
@@ -33,6 +37,9 @@ jQuery(function ($) {
 
         //加载尾
         loadFooter: function (callFun) {
+            if($('#footer').length == 0){
+                return false;
+            }
             $.ajax({
                 type: "GET",
                 url: './_footer.html',
@@ -72,7 +79,7 @@ jQuery(function ($) {
         //微信登录
         initWChatLogin: function () {
             $.getScript("http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js", function (data, status, jqxhr) {
-                $('.login').click(function (e) {
+                $('.wlogin').click(function (e) {
                     var obj = new WxLogin({
                         id: "login_container",
                         appid: "wxf3fc838959ff20bb",
@@ -102,6 +109,14 @@ jQuery(function ($) {
             }
         },
 
+        //点击验证码刷新
+        bindChangeCodeImg: function () {
+            var curSrc = $('.imgcode').attr('src');
+
+            $('.imgcode').click(function () {
+                $(this).attr('src', curSrc + '&_t=' + new Date().getTime());
+            });
+        },
         //执行回调函数
         _doCallBackFun: function (callFun, params) {
             if (callFun && $.isFunction(callFun)) {

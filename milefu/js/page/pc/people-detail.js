@@ -5,26 +5,56 @@
  * @version 1.0
  * @example:
  */
-$(function () {
-    $(".slideBox").slide({trigger: 'click', delayTime: 200});
+jQuery(function ($) {
+    var $peopleInfo = $('.js-people-info');
 
-    //这是一个非常简单的demo实例，让列表元素分页显示
-    //回调函数的作用是显示对应分页的列表项内容
-    //回调函数在用户每次点击分页链接的时候执行
-    //参数page_index{int整型}表示当前的索引页
-    var initPagination = function () {
-        // 创建分页
-        $("#Pagination").pagination(40, {
-            num_edge_entries: 5, //边缘页数
-            num_display_entries: 4, //主体页数
-            callback: pageselectCallback,
-            prev_text: "< 上一页",
-            next_text: "下一页 >",
-            items_per_page: 3 //每页显示1项
-        });
-    }();
+    var Main = {
+        init: function () {
+            this.bindEvent();
+            this.initData();
+        },
+        bindEvent: function () {
+            //下拉展开
+            $peopleInfo.on('click', '.peop-desc', function () {
+                $(this).find('img').toggleClass('on')
+                $('.peop-desc-cont').slideToggle();
+            });
 
-    function pageselectCallback(page_index, jq) {
-        return false;
+            //切换
+            $(".slideBox").slide({trigger: 'click', delayTime: 200});
+        },
+        initData: function () {
+            var celebrityId = Util.getQueryString('id');
+            if (!celebrityId) {
+                alert('没有用户ID');
+                //history.back();
+                return false;
+            }
+            this.initPeople(celebrityId);
+            this.initRelSpeech(celebrityId);
+        },
+
+        //初始化人物数据
+        initPeople: function (id) {
+            function renderData(retData) {
+                var template = $('#people-info-tpl').html();
+                var compiledTemplate = Template7.compile(template);
+                var html = compiledTemplate(retData.data);
+
+                $('.js-people-info').html(html);
+            }
+
+            var url = Util.getQueryString('_c') == 1 ? '/api/getmyapplyinfo' : '/api/getcelebrityinfo';
+            var idStr = Util.getQueryString('_c') == 1 ? 'myapplyId' : 'celebrityId';
+            $._get(url, {idStr: id}, function (retData) {
+                retData.data.intro = retData.data.intro || '暂无详情描述'
+                renderData(retData);
+            });
+        },
+
+        initRelSpeech: function (celebrityId) {
+            //TODO 与该用户相关的演讲列表
+        }
     }
+    Main.init();
 })

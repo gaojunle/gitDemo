@@ -108,6 +108,7 @@ a {
     top: 53px;
     border: 1px solid #dcdcdc;
     left: 0px;
+    z-index: 10000;
 }
 
 .header .nav li:hover ul {

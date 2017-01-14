@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/page/pc/create.css">
 </head>
 <body>
-<div id="header"></div>
+
 <div class="contbox ">
     <div class="title">
         <span class="triangle triangle-left"></span><span>编辑人物</span><span class="triangle triangle-right"></span>
@@ -104,7 +104,7 @@
         </div>
     </div>
 </div>
-<div id="footer"></div>
+
 <script type="text/html">
     <form class="createForm fl" id="createForm" method="get" action="">
         <div class="left fl">
@@ -165,15 +165,15 @@
 <script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js"></script>
 <script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="../../js/lib/util.js"></script>
-<script type="text/javascript" src="./lib/template7.min.js"></script>
+<script type="text/javascript" src="../../js/lib/template7.min.js"></script>
 <script type="text/javascript" src="../../js/base.js"></script>
 <script type="text/javascript" src="../../js/page/pc/create.js"></script>
 
 <script>
     jQuery(function ($) {
         if (Util.getQueryString('id')) {
-            $.get('/api/getcelebrityinfo', {
-                celebrityId: Util.getQueryString('id')
+            $.get('/mis/api/getmyapplyInfo', {
+                myapplyId: Util.getQueryString('id')
             }, function (retData) {
                 var d = retData.data;
                 $('.a-upload img').attr('src', d.avatar);

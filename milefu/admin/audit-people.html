@@ -299,14 +299,10 @@
                     $.get('/mis/api/getmyapplylist', {
                         type: 'celebrity',
                         pageNum: pageNum || 1,
-                        count: pageCount,
-                        status: '1,2,3'
+                        count: pageCount
                     }, function (retData) {
-                        if(retData.data.totalNum > 0){
-                            renderData(retData);
-                            initPagination(retData)
-                        }
-
+                        renderData(retData);
+                        initPagination(retData)
                         return false;
                     });
                 }

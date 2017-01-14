@@ -16,19 +16,17 @@ body {
 }
 
 .head-pic {
-    width: 215px;
-    height: 220px;
-    border: 1px solid;
     margin-top: 8px;
 }
+
 .a-upload {
-    width: 100%;
-    height: 222px;
-    line-height: 222px;
     position: relative;
+    width: 215px;
+    height: 215px;
+    line-height: 215px;
     cursor: pointer;
     color: #313131;
-    background: url("");
+    background-size: 100% 100%;
     overflow: hidden;
     text-align: center;
     display: inline-block;
@@ -39,16 +37,35 @@ body {
 .a-upload input {
     position: absolute;
     width: 100%;
-    height: 222px;
+    height: 100%;
     right: 0;
     top: 0;
     opacity: 0;
     filter: alpha(opacity=0);
-    cursor: pointer
+    cursor: pointer;
+    z-index: 100;
 }
+
+.a-upload span {
+    position: relative;
+}
+
+.a-upload img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
 .createForm {
     width: 658px;
+    position: relative;
     margin-left: 40px;
+}
+
+.createForm .right {
+    margin-left: 32px;
 }
 
 .createForm p {
@@ -61,7 +78,8 @@ body {
 
 .createForm p label {
     display: inline-block;
-    width: 70px;
+    font-size: 14px;
+    width: 80px;
     text-align: justify;
     text-justify: distribute-all-lines;
     overflow: hidden;
@@ -70,7 +88,7 @@ body {
 
 .createForm input {
     border: none;
-    width: 230px;
+    width: 200px;
     height: 26px;
     line-height: 26px;
     color: #313131;
@@ -80,7 +98,7 @@ body {
 }
 
 .createForm .name {
-    width: 132px;
+    width: 103px;
 }
 
 .createForm .createPeopleBtn {
@@ -98,8 +116,26 @@ body {
     vertical-align: middle;
 }
 
-#addr, #time {
-    width: 140px;
+.createForm .left .peomark-list {
+    display: none;
+    position: absolute;
+    width: 210px;
+    top: 148px;
+    left: 84px;
+    color: #313131;
+    border: 1px solid #dcdcdc;
+    background: white;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.createForm .left .peomark-list li {
+    padding: 5px 10px;
+}
+
+.createForm .left .peomark-list li:hover {
+    background: #5e9cff;
+    color: white;
 }
 
 .pl40 {
@@ -132,6 +168,7 @@ body {
     font-size: 18px;
     padding-bottom: 10px;
 }
+
 .submitbox {
     margin-top: 20px;
 }
@@ -146,7 +183,7 @@ body {
 }
 
 .submitbox .codebox {
-    margin-left: 370px;
+    float: right;
 }
 
 .submitbox .codebox .imgcode {
@@ -162,11 +199,31 @@ body {
     line-height: 25px;
     margin: 0px 15px;
 }
-.submitbox .codebox .submitBtn{
+
+.submitbox .codebox .submitBtn {
     display: inline-block;
     padding: 6px 20px;
     font-size: 18px;
     color: white;
     background: #5e9bfd;
     border-radius: 5px;
+}
+
+.peop-desc-ipt {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    box-sizing: border-box
+}
+
+#cityselect {
+
+}
+
+#cityselect select {
+    color: #313131;
+    width: 103px;
+    font-size: 14px;
+    padding-left: 10px;
+    line-height: 1.6;
 }

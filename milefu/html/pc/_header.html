@@ -2,19 +2,35 @@
     <div class="box clearfix">
         <img class="logo fl" src="../../img/pc/logo.png" alt="">
         <ul class="nav clearfix">
-            <li class="on"><a href="./index.html">首页</a></li>
-            <li><a href="./people.html">人物</a></li>
-            <li><a href="./view.html">观点</a></li>
-            <li><a href="./create.html">创建</a></li>
+            <li><a href="./index.html" class="main-link">首页</a></li>
+            <li><a href="./peopleList.html" class="main-link">人物</a></li>
+            <li><a href="./views.html" class="main-link">观点</a></li>
+            <li><a href="./createPeople.html" class="main-link">创建</a>
+                <ul>
+                    <li><a href="./createPeople.html">创建人物</a></li>
+                    <li><a href="./createSpeech.html">创建演讲</a></li>
+                </ul>
+            </li>
         </ul>
         <div class="search">
             <input type="text" class="search-ipt" placeholder="请输入要查询内容">
             <img src="../../img/pc/search-icon.png" class="icon-search"></img>
         </div>
         <div class="login">
-            <img src="../../img/pc/weixin-icon.png" alt="">
-            微信登录
-            <div id="login_container"></div>
+            <div class="wlogin">
+                <img src="../../img/pc/weixin-icon.png" alt="">
+                微信登录
+                <div id="login_container"></div>
+            </div>
+            <div class="logined hide">
+                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1950743172,1654245173&fm=116&gp=0.jpg"
+                     alt="">
+                <ul>
+                    <li><a href="./myfocus.html">我的关注</a></li>
+                    <li><a href="./mycreate.html">我的创建</a></li>
+                    <li><a href="./mycollect.html">我的收藏</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

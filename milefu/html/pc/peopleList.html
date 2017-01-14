@@ -65,13 +65,13 @@
 <!--人物列表模板-->
 <script type="text/html" id="people-list-tpl">
     {{#each list}}
-    <li class="clearfix" data-id="{{id}}">
+    <li class="clearfix" data-id="{{myapplyId}}">
         <img class="head-icon fl" src="{{avatar}}" alt="">
 
         <div class="desc fl">
             <img class="zhejiao" src="../../img/pc/zhejiao.png" alt="">
             <p>
-                <span class="name"><a href="./peopleDetail.html?id={{id}}">{{nameCn}}</a></span>
+                <span class="name">{{nameCn}}</span>
                 <span class="en-name">{{nameEn}}</span>
                 <span class="post">{{role}}</span>
                 <span class="focus on"><i></i>关注</span>
@@ -115,6 +115,107 @@
 <script type="text/javascript" src="../../js/lib/jquery.pagination.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/template7.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/base.js?_v=<?=$ver?>"></script>
-<script type="text/javascript" src="../../js/page/pc/people-list.js?_v=<?=$ver?>"></script>
+<script>
+    var initPagination = function () {
+        var Main = {
+            init: function () {
+                this.bindEvent();
+                this.initData();
+            },
+            bindEvent: function () {
+                this.getLabelList();
+            },
+            initData: function () {
+                var pageCount = 10,
+                    isInit = true;
+
+                getData(1);
+
+                function getData(pageNum) {
+                    $.get('/api/getcelebritylist', {
+                        type: 'celebrity',
+                        pageNum: pageNum,
+                        count: pageCount
+                    }, function (retData) {
+                        renderData(retData);
+                        if (isInit) {
+                            initPagination(retData);
+                            isInit = false;
+                        }
+
+                        return false;
+                    });
+                }
+
+                function renderData(retData) {
+                    Template7.registerHelper('statusName', function (status) {
+                        var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
+                        return statusMap[status - 1] || '审核中';
+                    });
+
+                    var template = $('#people-list-tpl').html();
+                    var compiledTemplate = Template7.compile(template);
+                    var html = compiledTemplate(retData.data);
+
+                    $('.js-people-list-box').html(html);
+                }
+
+                function initPagination(retData) {
+                    $("#pagination-people").pagination(Math.ceil(retData.data.totalNum / pageCount), {
+                        num_edge_entries: 4, //边缘页数
+                        num_display_entries: 4, //主体页数
+                        callback: function (page) {
+                            getData(page + 1);
+                        },
+                        prev_text: "< 上一页",
+                        next_text: "下一页 >",
+                        items_per_page: 1 //每页显示项
+                    });
+                }
+            },
+            getLabelList: function () {
+                var selLabelIds = [];
+
+                function removeByValue(arr, val) {
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i] == val) {
+                            arr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                $('.js-labels').on('click', 'a:not([data-id=0])', function () {
+                    var $this = $(this),
+                        $sLabels = $('.js-select-labels'),
+                        selId = $this.data('id'),
+                        selLabel = $sLabels.find('[data-id=' + selId + ']');
+
+                    $this.toggleClass('on');
+
+                    //没有选择该标签
+                    if (selLabel.length == 0) {
+                        $sLabels.append($this.clone().addClass('on'));
+                        selLabelIds.push(selId);
+                    } else {
+                        removeByValue(selLabelIds, selId);
+                        selLabel.remove();
+                    }
+                    console.log(selLabelIds)
+                    return false;
+                });
+
+                $._get('/api/getlabellist', {type: 'celebrity'}, function (retData) {
+                    var template = $('#labal-list-tpl').html();
+                    var compiledTemplate = Template7.compile(template);
+                    var html = compiledTemplate(retData);
+
+                    $('.js-labels').html(html);
+                })
+            }
+        };
+        Main.init();
+    }();
+</script>
 </body>
 </html>

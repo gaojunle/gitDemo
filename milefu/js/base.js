@@ -9,7 +9,6 @@ jQuery(function ($) {
     var Base = {
         init: function () {
             this.loadHeader(function () {
-                //Base._headerSearch();
                 Base.initWChatLogin();
             });
             this.loadFooter();
@@ -23,6 +22,8 @@ jQuery(function ($) {
                 success: function (data) {
                     $('#header').append(data);
                     Base._doCallBackFun(callFun);
+                    Base.setCurTitle();
+                    Base._headerSearch();
                 },
                 error: function () {
                     console.log("加载资源失败");
@@ -49,51 +50,23 @@ jQuery(function ($) {
         /*头部关键词搜索*/
         _headerSearch: function () {
             //搜索框事件
-            $('.ipt-search').focus(function () {
-                $('.search-result').show();
-            }).blur(function () {
-                $('.search-result').hide();
-            }).on('mouseenter', function () {
-                $('.sel-module').slideDown();
-                //关键词显示时隐藏轮播和横比选项
-                $('#slideBox').slideUp();
-                $('.js-hengbi-box').slideUp();
-            });
+            var $searchIpt = $('.search-ipt');
 
-            //搜索区事件
-            var $selItems = $('.sel-items'),
-                $selBox = $('.js-sel-box');
-            $selBox.on('click', 'a', function () {
-                var $this = $(this),
-                    txt = $this.html(),
-                    type = $this.parents('ul').data('type'),
-                    id = $this.data('id');
-
-                var $selItem = $selItems.find('[data-type="' + type + '"]');
-                if (id != $selItem.data(id)) {
-                    $selItem.data('id', id).data('txt', txt).find('em').html(txt);
-                    $selItem.show();
-                    $this.parents('ul').find('a').removeClass('sel');
-                    $this.addClass('sel');
+            $searchIpt.on('keyup', function (e) {
+                if (e.keyCode == '13') {
+                    doSearch();
                 }
-                return false;
             });
-            $selItems.on('click', 'a', function () {
-                var $this = $(this),
-                    $parent = $this.parent();
-                $parent.hide();
-                $parent.find('em').html('');
-                var dataid = $parent.data('id');
-
-                $selBox.find('[data-id="' + dataid + '"]').removeClass('sel');
-                return false;
-            });
-            $('.sel-module').on('click', '.js-sel-close', function () {
-                $('.sel-module').slideUp();
-                $('#slideBox').slideDown();
-            });
-
-            $("#selectSlider").slide({trigger: "click"});
+            $searchIpt.next().click(function () {
+                doSearch();
+            })
+            function doSearch() {
+                if ($.trim($searchIpt.val()) == '') {
+                    alert('请输入搜索人物名');
+                    return false;
+                }
+                location.href = './searchResult.html?searchipt=' + $searchIpt.val();
+            }
         },
 
         //微信登录
@@ -118,6 +91,17 @@ jQuery(function ($) {
             });
         },
 
+        //切换标题
+        setCurTitle: function () {
+            var curTitle = location.pathname.substr(location.pathname.lastIndexOf('/') + 1);
+            var $curLink = $('.nav .main-link[href$="' + curTitle + '"]');
+            if ($curLink.length > 0) {
+                $curLink.parent().addClass('on');
+            } else {
+                $('.nav li').eq(0).addClass('on');
+            }
+        },
+
         //执行回调函数
         _doCallBackFun: function (callFun, params) {
             if (callFun && $.isFunction(callFun)) {
@@ -128,4 +112,44 @@ jQuery(function ($) {
         }
     }
     Base.init();
+    $.fn.serializeJson = function () {
+        var serializeObj = {};
+        var array = this.serializeArray();
+        var str = this.serialize();
+        $(array).each(function () {
+            if (serializeObj[this.name]) {
+                if ($.isArray(serializeObj[this.name])) {
+                    serializeObj[this.name].push(this.value);
+                } else {
+                    serializeObj[this.name] = [serializeObj[this.name], this.value];
+                }
+            } else {
+                serializeObj[this.name] = this.value;
+            }
+        });
+        return serializeObj;
+    };
 });
+$._get = function (url, data, callback) {
+    $.get(url, data || {}, function (retData) {
+        if (retData.errno == 0) {
+            if (callback && $.isFunction(callback)) {
+                callback(retData);
+            }
+        } else {
+            console.error(retData.errmsg);
+        }
+    })
+}
+
+$._post = function (url, data, callback) {
+    $.post(url, data || {}, function (retData) {
+        if (retData.errno == 0) {
+            if (callback && $.isFunction(callback)) {
+                callback(retData);
+            }
+        } else {
+            alert(retData.errmsg);
+        }
+    })
+}

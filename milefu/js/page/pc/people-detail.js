@@ -45,8 +45,8 @@ jQuery(function ($) {
             }
 
             var url = Util.getQueryString('_c') == 1 ? '/api/getmyapplyinfo' : '/api/getcelebrityinfo';
-            var idStr = Util.getQueryString('_c') == 1 ? 'myapplyId' : 'celebrityId';
-            $._get(url, {idStr: id}, function (retData) {
+            var data = Util.getQueryString('_c') == 1 ? {myapplyId: id} : {celebrityId: id};
+            $._get(url, data, function (retData) {
                 retData.data.intro = retData.data.intro || '暂无详情描述'
                 renderData(retData);
             });

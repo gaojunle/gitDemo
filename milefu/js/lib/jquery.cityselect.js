@@ -16,7 +16,6 @@
         if (this.length < 1) {
             return;
         }
-        ;
 
         // 默认值
         settings = $.extend({

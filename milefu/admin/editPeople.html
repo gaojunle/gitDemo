@@ -7,12 +7,12 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>米乐弗-编辑人物</title>
-    <link rel="stylesheet" href="../../css/common/normalize.css">
-    <link rel="stylesheet" href="../../css/common/common.css">
-    <link rel="stylesheet" href="../../css/common/pagination.css">
-    <link rel="stylesheet" href="../../css/common/laydate.css">
-    <link rel="stylesheet" href="../../js/lib/ueditor/themes/default/css/umeditor.css">
-    <link rel="stylesheet" href="../../css/page/pc/create.css">
+    <link rel="stylesheet" href="../../css/common/normalize.css?_v=<?=$ver?>">
+    <link rel="stylesheet" href="../../css/common/common.css?_v=<?=$ver?>">
+    <link rel="stylesheet" href="../../css/common/pagination.css?_v=<?=$ver?>">
+    <link rel="stylesheet" href="../../css/common/laydate.css?_v=<?=$ver?>">
+    <link rel="stylesheet" href="../../js/lib/ueditor/themes/default/css/umeditor.css?_v=<?=$ver?>">
+    <link rel="stylesheet" href="../../css/page/pc/create.css?_v=<?=$ver?>">
 </head>
 <body>
 
@@ -47,10 +47,10 @@
                 </p>
                 <p>
                     <label>人物标签</label>
-                    <input name="labels" type="text" class="js-mark-list" placeholder="标签一"><br>
-                    <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+                    <input name="label" type="text" class="js-mark-list" placeholder="标签一"><br>
+                    <input name="label" type="text" class="js-mark-list" style="margin-left: 84px;"
                            placeholder="标签二"><br>
-                    <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+                    <input name="label" type="text" class="js-mark-list" style="margin-left: 84px;"
                            placeholder="标签三">
                 </p>
                 <ul class="peomark-list">
@@ -98,7 +98,7 @@
                 <div class="codebox fl">
                     <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
                     <input class="codeipt" type="text" placeholder="验证码">
-                    <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
+                    <a class="submitBtn js-submit" href="javascript:;">保存并通过审核</a>
                 </div>
             </div>
         </div>
@@ -121,10 +121,10 @@
         </p>
         <p>
             <label>人物标签</label>
-            <input name="labels" type="text" class="js-mark-list" placeholder="标签一"><br>
-            <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+            <input name="label" type="text" class="js-mark-list" placeholder="标签一"><br>
+            <input name="label" type="text" class="js-mark-list" style="margin-left: 84px;"
                    placeholder="标签二"><br>
-            <input name="labels" type="text" class="js-mark-list" style="margin-left: 84px;"
+            <input name="label" type="text" class="js-mark-list" style="margin-left: 84px;"
                    placeholder="标签三">
         </p>
         <ul class="peomark-list"></ul>
@@ -159,17 +159,17 @@
     <li data-id="{{id}}" href="#">{{name}}</li>
     {{/each}}
 </script>
-<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/lib/jquery.validate.min.js"></script>
-<script type="text/javascript" src="../../js/lib/jquery.form.min.js"></script>
-<script type="text/javascript" src="../../js/lib/jquery.cityselect.js"></script>
-<script type="text/javascript" src="../../js/lib/laydate.js"></script>
-<script type="text/javascript" src="../../js/lib/ueditor/umeditor.config.js"></script>
-<script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js"></script>
-<script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="../../js/lib/util.js"></script>
-<script type="text/javascript" src="../../js/lib/template7.min.js"></script>
-<script type="text/javascript" src="../../js/base.js"></script>
-<script type="text/javascript" src="../../js/page/pc/create.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/jquery.validate.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/jquery.form.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/jquery.cityselect.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/laydate.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/umeditor.config.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/util.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/template7.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/base.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/page/admin/editPeople.js?_v=<?=$ver?>"></script>
 </body>
 </html>

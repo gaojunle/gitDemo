@@ -23,41 +23,7 @@
         <div class="select-labels js-select-labels">
             <span>已选标签：<a data-id="0" class="on" href="#">全部</a></span>
         </div>
-        <ul class="peolist js-people-list-box">
-            <li class="clearfix">
-                <img class="head-icon fl" src="../../img/pc/people/mayun.png" alt="">
-                <div class="desc fl">
-                    <img class="zhejiao" src="../../img/pc/zhejiao.png" alt="">
-                    <p>
-                        <span class="name">马云</span>
-                        <span class="en-name">(Jack Ma)</span>
-                        <span class="post">阿里巴巴集团创始人</span>
-                        <span class="focus on"><i></i>关注</span>
-                    </p>
-
-                    <div class="info">
-                        <p><label>职业：<span class="job">企业家、慈善家</span></label><label>出 生 地：<span
-                                class="job">浙江省杭州市</span></label></p>
-
-                        <p><label>国籍：<span class="job">中国</span></label><label>出生日期：<span class="job">1964年9月10日</span></label>
-                        </p>
-
-                        <p><label>民族：<span class="job">汉族</span></label><label>毕业院校：<span
-                                class="job">杭州师范大学（原杭州师范学院）</span></label></p>
-                    </div>
-                    <div class="line"></div>
-                    <div class="about">
-                        <span class="status">
-                            <span><img src="../../img/pc/redu.png" alt="">热度2000</span>
-                            <span><img src="../../img/pc/shoucang.png" alt="">收藏30篇</span>
-                            <span><img src="../../img/pc/shoulv.png" alt="">收录30篇</span>
-                        </span>
-                        <span class="hot-view"><img src="../../img/pc/guandian.png"
-                                                    alt="">最热观点：<span>创业</span><span>创业</span><span>创业</span></span>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <ul class="peolist js-people-list-box"></ul>
     </div>
 </div>
 <div id="pagination-people" class="pagination"><!-- 这里显示分页 --></div>
@@ -65,13 +31,13 @@
 <!--人物列表模板-->
 <script type="text/html" id="people-list-tpl">
     {{#each list}}
-    <li class="clearfix" data-id="{{myapplyId}}">
+    <li class="clearfix" data-id="{{id}}">
         <img class="head-icon fl" src="{{avatar}}" alt="">
 
         <div class="desc fl">
             <img class="zhejiao" src="../../img/pc/zhejiao.png" alt="">
             <p>
-                <span class="name">{{nameCn}}</span>
+                <span class="name"><a href="./peopleDetail.html?id={{id}}">{{nameCn}}</a></span>
                 <span class="en-name">{{nameEn}}</span>
                 <span class="post">{{role}}</span>
                 <span class="focus on"><i></i>关注</span>
@@ -89,16 +55,16 @@
                 </p>
 
                 <p>
-                    <label>民族：<span class="job">{{national}}</span></label>
+                    <label>主要身份：<span class="job">{{role}}</span></label>
                     <label>毕业院校：<span class="job">{{college}}</span></label>
                 </p>
             </div>
             <div class="line"></div>
             <div class="about">
                 <span class="status">
-                    <span><img src="../../img/pc/redu.png" alt="">热度2000</span>
-                    <span><img src="../../img/pc/shoucang.png" alt="">收藏30篇</span>
-                    <span><img src="../../img/pc/shoulv.png" alt="">收录30篇</span>
+                    <span><img src="../../img/pc/redu.png" alt="">热度{{hotNum}}</span>
+                    <span><img src="../../img/pc/shoucang.png" alt="">收藏{{lecLikeNum}}篇</span>
+                    <span><img src="../../img/pc/shoulv.png" alt="">收录{{lecNum}}篇</span>
                 </span>
             </div>
         </div>
@@ -115,107 +81,6 @@
 <script type="text/javascript" src="../../js/lib/jquery.pagination.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/template7.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/base.js?_v=<?=$ver?>"></script>
-<script>
-    var initPagination = function () {
-        var Main = {
-            init: function () {
-                this.bindEvent();
-                this.initData();
-            },
-            bindEvent: function () {
-                this.getLabelList();
-            },
-            initData: function () {
-                var pageCount = 10,
-                    isInit = true;
-
-                getData(1);
-
-                function getData(pageNum) {
-                    $.get('/api/getcelebritylist', {
-                        type: 'celebrity',
-                        pageNum: pageNum,
-                        count: pageCount
-                    }, function (retData) {
-                        renderData(retData);
-                        if (isInit) {
-                            initPagination(retData);
-                            isInit = false;
-                        }
-
-                        return false;
-                    });
-                }
-
-                function renderData(retData) {
-                    Template7.registerHelper('statusName', function (status) {
-                        var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
-                        return statusMap[status - 1] || '审核中';
-                    });
-
-                    var template = $('#people-list-tpl').html();
-                    var compiledTemplate = Template7.compile(template);
-                    var html = compiledTemplate(retData.data);
-
-                    $('.js-people-list-box').html(html);
-                }
-
-                function initPagination(retData) {
-                    $("#pagination-people").pagination(Math.ceil(retData.data.totalNum / pageCount), {
-                        num_edge_entries: 4, //边缘页数
-                        num_display_entries: 4, //主体页数
-                        callback: function (page) {
-                            getData(page + 1);
-                        },
-                        prev_text: "< 上一页",
-                        next_text: "下一页 >",
-                        items_per_page: 1 //每页显示项
-                    });
-                }
-            },
-            getLabelList: function () {
-                var selLabelIds = [];
-
-                function removeByValue(arr, val) {
-                    for (var i = 0; i < arr.length; i++) {
-                        if (arr[i] == val) {
-                            arr.splice(i, 1);
-                            break;
-                        }
-                    }
-                }
-
-                $('.js-labels').on('click', 'a:not([data-id=0])', function () {
-                    var $this = $(this),
-                        $sLabels = $('.js-select-labels'),
-                        selId = $this.data('id'),
-                        selLabel = $sLabels.find('[data-id=' + selId + ']');
-
-                    $this.toggleClass('on');
-
-                    //没有选择该标签
-                    if (selLabel.length == 0) {
-                        $sLabels.append($this.clone().addClass('on'));
-                        selLabelIds.push(selId);
-                    } else {
-                        removeByValue(selLabelIds, selId);
-                        selLabel.remove();
-                    }
-                    console.log(selLabelIds)
-                    return false;
-                });
-
-                $._get('/api/getlabellist', {type: 'celebrity'}, function (retData) {
-                    var template = $('#labal-list-tpl').html();
-                    var compiledTemplate = Template7.compile(template);
-                    var html = compiledTemplate(retData);
-
-                    $('.js-labels').html(html);
-                })
-            }
-        };
-        Main.init();
-    }();
-</script>
+<script type="text/javascript" src="../../js/page/pc/people-list.js?_v=<?=$ver?>"></script>
 </body>
 </html>

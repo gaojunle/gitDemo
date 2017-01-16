@@ -44,7 +44,10 @@
     font-size: 28px;
     color: #5e9cff;
 }
-
+.desc .name a{
+    text-decoration: underline;
+    color: #5e9cff;
+}
 .desc .en-name {
     font-size: 20px;
 }
@@ -239,7 +242,10 @@
     font-size: 22px;
     font-weight: normal;
 }
-
+.slideBox .hot-info .top-l h3 a {
+    text-decoration: underline;
+    color: white;
+}
 .slideBox .hot-info .top-l p {
     font-size: 16px;
 }
@@ -283,7 +289,7 @@
     background: white;
     height: 126px;
     padding: 20px 15px;
-
+    overflow: hidden;
 }
 
 .slideBox .bd .cont p {

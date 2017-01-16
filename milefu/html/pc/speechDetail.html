@@ -98,12 +98,94 @@
         </div>
     </div>
 </div>
+<!--演讲列表模板-->
+<script type="text/html" id="speech-list-tpl">
+    {{#each myapplyList}}
+    <div class="s-detail clearfix">
+        <img class="fl" src="{{image}}" alt="">
+        <div class="fl summary clearfix">
+            <div class="speaker fl">
+                <img class="fl" src="../../img/pc/people/mayun.png" alt="">
+                <span class="job">{{role}}</span><br>
+                <span class="name">{{nameCn}}</span>
+            </div>
+            <div class="info fl">
+                <span>创建人：米乐弗超人</span>
+                <span><img src="../../img/pc/redu.png" alt="">热度{{hotNum}}</span>
+                <span><img src="../../img/pc/shoucang.png" alt="">收藏{{likeNum}}篇</span>
+                <span><img src="../../img/pc/clock.png" alt="">发布时间 {{publicDate speaktime}}</span>
+                <p class="views">演讲观点：
+                    {{#each labelDesc}}
+                    <span data-id="{{id}}">{{value}}</span>
+                    {{/each}}
+                    <a class="btn-collect" href="#"><img src="../../img/pc/icon-collect.png" alt="">收藏</a></p>
+            </div>
+            <div style="clear: both"></div>
+            <div class="desc-info clearfix">
+                <div class="left fl">
+                    <p>演讲地点：{{speakplace}}</p>
+                    <p>演讲日期：{{speaktime}}</p>
+                    <p>主办方：{{sponsor}}</p>
+                </div>
+                <div class="right fl">
+                    <div class="summary-three fl">
+                        三句摘要
+                    </div>
+                    <div class="summary-cont fl">
+                        <p class="ellipsis">1、“电子商务”将消失，引领未来是这些！</p>
+                        <p class="ellipsis">2、电子商务没有冲击传统的商业 </p>
+                        <p class="ellipsis">3、呼吁各国为三十岁以下的年轻人制定独特</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="speech-cont">
+        {{content}}
+    </div>
+    <div class="pr clearfix">
+        <div class="speaker fl">
+            <img class="fl" src="../../img/pc/people/mayun.png" alt="">
+            <span class="job">阿里马马集团创始人</span><br>
+            <span class="name">马云</span>
+        </div>
+        <div class="fl rel-s">相关文章</div>
+    </div>
+    <div class="recom clearfix">
+        <div class="recom-p fl">
+            <a href="#">
+                <img src="../../img/pc/people/mayun-1.png" alt="">
+                <p>南华早报中国年会演讲 《当东方遇见西方》</p>
+            </a>
+        </div>
+        <div class="recom-p fl">
+            <a href="#">
+                <img src="../../img/pc/people/mayun-1.png" alt="">
+                <p>南华早报中国年会演讲 《当东方遇见西方》</p>
+            </a>
+        </div>
+        <div class="recom-p fl">
+            <a href="#">
+                <img src="../../img/pc/people/mayun-1.png" alt="">
+                <p>南华早报中国年会演讲 《当东方遇见西方》</p>
+            </a>
+        </div>
+        <div class="recom-p fl">
+            <a href="#">
+                <img src="../../img/pc/people/mayun-1.png" alt="">
+                <p>南华早报中国年会演讲 《当东方遇见西方》</p>
+            </a>
+        </div>
+    </div>
+</script>
 <div id="footer"></div>
 
 <script type="text/javascript" src="../../js/lib/jquery.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/jquery.pagination.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/jquery.SuperSlide.2.1.2.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/template7.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/base.js?_v=<?=$ver?>"></script>
-<script>
-
-</script>
+<script type="text/javascript" src="../../js/page/pc/?_v=<?=$ver?>"></script>
 </body>
 </html>

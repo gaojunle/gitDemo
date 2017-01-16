@@ -11,7 +11,18 @@
     <link rel="stylesheet" href="../../css/common/common.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../css/common/pagination.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../js/lib/ueditor/themes/default/css/umeditor.css?_v=<?=$ver?>">
+    <link rel="stylesheet" href="../../js/lib/chosen/chosen.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../css/page/pc/create.css?_v=<?=$ver?>">
+    <style>
+        .createForm .views {
+            width: 55px;
+        }
+
+        .createForm select {
+            color: #222222;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 <div id="header"></div>
@@ -36,49 +47,42 @@
                     <input id="title" name="title" type="text" placeholder="必填">
                 </p>
                 <p>
-                    <label for="uname">演 讲 人</label>
-                    <input class="name" id="uname" name="uname" type="text" placeholder="必填">
+                    <label>演 讲 人</label>
+                    <select name="speaker" id="js-peoples-list" data-placeholder="必填" style="width:115px;"></select>
                     <a class="createPeopleBtn" href="./createPeople.html">创建新人物</a>
                 </p>
                 <p>
-                    <style>
-                        .createForm .views{
-                            width: 55px;
-                        }
-                    </style>
                     <label for="view">演讲观点</label>
-                    <input class="views js-mark-list" id="view" name="view" type="text" placeholder="观点一">
-                    <input class="views js-mark-list" name="view" type="text" placeholder="观点二">
-                    <input class="views js-mark-list" name="view" type="text" placeholder="观点三">
+                    <input class="views js-mark-list" id="viewpoint" name="viewpoint" type="text" placeholder="观点一">
+                    <input class="views js-mark-list" name="viewpoint" type="text" placeholder="观点二">
+                    <input class="views js-mark-list" name="viewpoint" type="text" placeholder="观点三">
                 </p>
-                <p>
+                <p class="js-summary">
                     <label>三句摘要</label>
-                    <input name="summary1" type="text"><br>
-                    <input name="summary2" type="text" style="margin-left: 84px;"><br>
-                    <input name="summary3" type="text" style="margin-left: 84px;">
+                    <input name="summary" type="text"><br>
+                    <input name="summary" type="text" style="margin-left: 84px;"><br>
+                    <input name="summary" type="text" style="margin-left: 84px;">
                 </p>
-                <ul class="peomark-list">
-                    <li>a</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                    <li>小明</li>
-                </ul>
+                <ul class="peomark-list"></ul>
             </div>
             <div class="right fl">
                 <p>
-                    <label for="subtitle">演讲副标题</label>
-                    <input id="subtitle" name="subtitle" type="text">
+                    <label for="subTitle">演讲副标题</label>
+                    <input id="subTitle" name="subTitle" type="text">
                 </p>
-                <p>
+                <p id="cityselect">
                     <label for="addr">演讲地点</label>
-                    <input id="addr" name="addr" type="text">
+                    <select data-default="请选择" class="prov mochen-select" name='userProvince'>
+                        <option value="-1" selected="selected">请选择</option>
+                    </select>
+                    <select data-default="请选择" class="city mochen-select" name='userCity'>
+                        <option value="-1" selected="selected">请选择</option>
+                    </select>
                 </p>
 
                 <p>
-                    <label for="time">演讲时间</label>
-                    <input id="time" name="time" type="text" placeholder="必填">
+                    <label for="speaktime">演讲时间</label>
+                    <input id="speaktime" name="speaktime" type="text" placeholder="必填">
                 </p>
                 <p>
                     <label for="sponsor">主 办 方</label>
@@ -94,7 +98,7 @@
             <div id="myEditor"></div>
             <div class="submitbox clearfix">
                 <div class="codebox fl">
-                    <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
+                    <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=lecture" alt="">
                     <input class="codeipt" type="text" placeholder="验证码">
                     <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
                 </div>
@@ -104,115 +108,78 @@
     </div>
 </div>
 <div id="footer"></div>
+<script type="text/html" id="peoples-list-tpl">
+    {{#each list}}
+    <option data-id="{{id}}" {{#if selected}}selected{{/if}}>{{nameCn}}</option>
+    {{/each}}
+</script>
+<script type="text/html" id="edit-speech-tpl">
+    <div class="left fl">
+        <p>
+            <label>演讲标题</label>
+            <input name="title" type="text" placeholder="必填" value="{{title}}">
+        </p>
+        <p>
+            <label>演 讲 人</label>
+            <select name="speaker" id="js-peoples-list" data-placeholder="必填" style="width:115px;"></select>
+            <a class="createPeopleBtn" href="./createPeople.html">创建新人物</a>
+        </p>
+        <p>
+            <label>演讲观点</label>
+            <input class="views js-mark-list" name="viewpoint" type="text" placeholder="观点一">
+            <input class="views js-mark-list" name="viewpoint" type="text" placeholder="观点二">
+            <input class="views js-mark-list" name="viewpoint" type="text" placeholder="观点三">
+        </p>
+        <p class="js-summary">
+            <label>三句摘要</label>
+            <input name="summary" type="text"><br>
+            <input name="summary" type="text" style="margin-left: 84px;"><br>
+            <input name="summary" type="text" style="margin-left: 84px;">
+        </p>
+        <ul class="peomark-list"></ul>
+    </div>
+    <div class="right fl">
+        <p>
+            <label>演讲副标题</label>
+            <input name="subTitle" type="text" value="{{subTitle}}">
+        </p>
+        <p id="cityselect">
+            <label>演讲地点</label>
+            <select data-default="请选择" class="prov mochen-select" name='userProvince'>
+                <option value="-1" selected="selected">请选择</option>
+            </select>
+            <select data-default="请选择" class="city mochen-select" name='userCity'>
+                <option value="-1" selected="selected">请选择</option>
+            </select>
+        </p>
 
+        <p>
+            <label>演讲时间</label>
+            <input id="speaktime" name="speaktime" type="text" placeholder="必填" value="{{speaktime}}">
+        </p>
+        <p>
+            <label>主 办 方</label>
+            <input name="sponsor" type="text" value="{{sponsor}}">
+        </p>
+    </div>
+</script>
+<script type="text/html" id="labal-list-tpl">
+    {{#each data}}
+    <li data-id="{{id}}">{{name}}</li>
+    {{/each}}
+</script>
 <script type="text/javascript" src="../../js/lib/jquery.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/jquery.validate.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/jquery.form.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/jquery.cityselect.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/laydate.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/ueditor/umeditor.config.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/ueditor/umeditor.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/ueditor/lang/zh-cn/zh-cn.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/template7.min.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/chosen/chosen.jquery.js?_v=<?=$ver?>"></script>
+<script type="text/javascript" src="../../js/lib/util.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/base.js?_v=<?=$ver?>"></script>
-<script type="text/javascript" src="../../js/page/pc/create.js?_v=<?=$ver?>"></script>
-<script>
-    jQuery(function ($) {
-        //实例化编辑器
-        var um = UM.getEditor('myEditor');
-        //上传文件
-        $('.a-upload input').change(function () {
-            $("#uploadImg").ajaxSubmit({
-                url: '/api/uploadimg',
-                data: {
-                    type: 'lecture'
-                },
-                type: "POST",
-                success: function (retData) {
-                    if (retData.errno == 0) {
-                        $('.a-upload img').attr('src', retData.data);
-                        $('.a-upload span').html('');
-                    } else {
-                        alert('上传出错')
-                    }
-                },
-                error: function (msg) {
-                    alert("出错了");
-                }
-            });
-        });
-
-        //观点选择
-        var $iptPeoMark = $('.js-mark-list'),
-            $peomarkList = $('.peomark-list'),
-            $curIpt = null;
-
-        $iptPeoMark.focus(function () {
-            $curIpt = $(this);
-            $peomarkList.css('top', $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top).show();
-        }).blur(function () {
-            $peomarkList.hide(200);
-        }).keyup(function (e) {
-            $peomarkList.find('li').show();
-            $peomarkList.find('li:not(:contains("' + $(this).val() + '"))').hide();
-        }).click(function () {
-            return false;
-        });
-        $peomarkList.on('click', 'li', function () {
-            var $this = $(this);
-            $curIpt.val($this.html()).data('markid', $this.data('markid'));
-            $peomarkList.hide();
-            return false;
-        });
-        $(document).click(function () {
-            $peomarkList.fadeOut();
-        });
-
-        //表单验证
-        $('.createForm').validate({
-            submitHandler: function (form) {
-                var lables = [];
-                $('.js-peomark-list').each(function () {
-                    if ($(this).data('markid')) {
-                        lables.push($(this).data('markid'))
-                    }
-                });
-
-                if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
-                    alert('请上传用户图片');
-                    return false;
-                }
-                var data = $.extend({}, {
-                    avatar: $('.a-upload img').attr('src'),
-                    birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
-                    labels: lables.join(','),
-                    captcha: $('.codeipt').val(),
-                    intro: um.getContent()
-                }, $('#createForm').serializeJson());
-
-                console.log(data);
-
-                $.post('api/submitcelebrity', data, function (retData) {
-                    if (retData.errno == 0) {
-                        location.href = './mycreate.html';
-                    } else {
-                        alert(retData.errmsg)
-                    }
-                });
-            },
-            errorElement: 'i',
-            rules: {
-                nameCn: 'required',
-                birthday: 'required'
-            },
-            messages: {
-                nameCn: '*',
-                birthday: '*'
-            }
-        });
-
-        //提交
-        $('.js-submit').click(function () {
-            $('.createForm').submit()
-        });
-    })
-</script>
+<script type="text/javascript" src="../../js/page/pc/createSpeech.js?_v=<?=$ver?>"></script>
 </body>
 </html>

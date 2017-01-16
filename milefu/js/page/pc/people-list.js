@@ -50,8 +50,9 @@ jQuery(function ($) {
                     removeByValue(selLabelIds, selId);
                     selLabel.remove();
                 }
-                //console.log(selLabelIds)
+                console.log(selLabelIds)
                 //TODO 根据选择标签筛选人物
+                Main.initPeopleList(selLabelIds.join(','))
                 return false;
             });
         },
@@ -64,11 +65,11 @@ jQuery(function ($) {
                 var html = compiledTemplate(retData);
 
                 $('.js-labels').html(html);
-            })
+            });
         },
 
-        //加载人物列表
-        initPeopleList: function () {
+        //加载人物列表, labels所选的人物标签
+        initPeopleList: function (labels) {
             var pageCount = 10,
                 isInit = true;
 
@@ -77,6 +78,7 @@ jQuery(function ($) {
             function getData(pageNum) {
                 $.get('/api/getcelebritylist', {
                     type: 'celebrity',
+                    labels: labels || '',
                     pageNum: pageNum,
                     count: pageCount
                 }, function (retData) {
@@ -108,7 +110,9 @@ jQuery(function ($) {
                     num_edge_entries: 4, //边缘页数
                     num_display_entries: 4, //主体页数
                     callback: function (page) {
-                        getData(page + 1);
+                        if (!isInit) {
+                            getData(page + 1);
+                        }
                     },
                     prev_text: "< 上一页",
                     next_text: "下一页 >",

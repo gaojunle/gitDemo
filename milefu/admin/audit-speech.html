@@ -179,6 +179,40 @@
                         }
                     })
                 });
+
+                this.bindAudit();
+            },//审核操作
+            bindAudit: function () {
+                $(document).on('click', '.js-btn-pass', function () {
+                    var $this = $(this);
+                    $.post('/mis/api/auditmyapply', {
+                        myapplyId: $this.data('myapplyid'),
+                        applyStatus: 2
+                    }, function (retData) {
+                        if (retData.errno == 0) {
+                            $this.parent().find('.js-btn-pass,.js-btn-refuse').hide();
+                            $this.parent().prev().html('审核通过')
+                        } else {
+                            alert('操作失败：' + retData.errmsg)
+                        }
+                    });
+                    return false;
+                }).on('click', '.js-btn-refuse', function () {
+                    var $this = $(this);
+                    $.post('/mis/api/auditmyapply', {
+                        myapplyId: $this.data('myapplyid'),
+                        applyStatus: 3,
+                        applyReason: '无'
+                    }, function (retData) {
+                        if (retData.errno == 0) {
+                            $this.parent().find('.js-btn-pass,.js-btn-refuse').hide();
+                            $this.parent().prev().html('审核拒绝')
+                        } else {
+                            alert('操作失败：' + retData.errmsg)
+                        }
+                    });
+                    return false;
+                })
             },
             initData: function () {
                 var pageCount = 10;
@@ -210,7 +244,8 @@
                         if (status != 1) {
                             return tpl
                         } else {
-                            return '<a class="btn btn-default js-btn-pass" href="#">通过</a><a class="btn btn-default js-btn-refuse" href="#">拒绝</a>' + tpl;
+                            return '<a class="btn btn-default js-btn-pass" href="#" data-myapplyId="' + myapplyId + '">通过</a>' +
+                                '<a class="btn btn-default js-btn-refuse" href="#" data-myapplyId="' + myapplyId + '">拒绝</a>' + tpl;
                         }
                     });
 

@@ -49,7 +49,7 @@ jQuery(function ($) {
                 });
                 //标签内容
                 var $labels = $('.js-mark-list');
-                console.log(d.labelDesc)
+
                 $.each(d.labelDesc || [], function (i, v) {
                     $labels.eq(i).val(v.value).data('id', v.id);
                 });

@@ -44,7 +44,7 @@ jQuery(function ($) {
             function renderData(retData) {
                 Template7.registerHelper('editBtn', function (status, myapplyId, celebrityId) {
                     if (status != 1) {
-                        return '<a class="btn-edit" href="./createPeople.html?id=' + myapplyId + '&celebrityId=' + celebrityId + '">编辑</a>';
+                        return '<a class="btn-edit" href="./createPeople.html?id=' + celebrityId + '">编辑</a>';
                     }
                     return '';
                 });
@@ -103,7 +103,7 @@ jQuery(function ($) {
             function renderData(retData) {
                 Template7.registerHelper('editBtn', function (status, myapplyId, lectureId) {
                     if (status != 1) {
-                        return '<a class="btn-edit" href="./createSpeech.html?id=' + myapplyId + '&lectureId=' + lectureId + '">编辑</a>';
+                        return '<a class="btn-edit" href="./createSpeech.html?id=' + lectureId + '">编辑</a>';
                     }
                     return '';
                 });

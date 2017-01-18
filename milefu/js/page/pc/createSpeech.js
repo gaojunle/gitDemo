@@ -22,7 +22,7 @@ jQuery(function ($) {
                     createSpeech.initEditData();
                 } else {
                     createSpeech.initCreate();
-                    this.bindSelPeople();
+                    createSpeech.bindSelPeople();
                 }
             });
         },
@@ -37,8 +37,8 @@ jQuery(function ($) {
         },
         //编辑时，初始化数据
         initEditData: function () {
-            $.get('/api/getmyapplyInfo', {
-                myapplyId: Util.getQueryString('id')
+            $.get('/api/getlectureinfo', {
+                lectureId: Util.getQueryString('id')
             }, function (retData) {
                 var d = retData.data;
 
@@ -144,11 +144,10 @@ jQuery(function ($) {
 
             $iptPeoMark.focus(function () {
                 $curIpt = $(this);
-                $peomarkList.css('top', $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top).show();
-            }).blur(function () {
-                setTimeout(function () {
-                    $peomarkList.hide(200);
-                }, 200)
+                $peomarkList.css({
+                    top: $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top,
+                    left: $curIpt.offset().left - $('#createForm').offset().left
+                }).show();
             }).keyup(function (e) {
                 $peomarkList.find('li').show();
                 $peomarkList.find('li:not(:contains("' + $(this).val() + '"))').hide();
@@ -158,10 +157,13 @@ jQuery(function ($) {
             $peomarkList.on('click', 'li', function () {
                 var $this = $(this);
                 $curIpt.val($this.html()).data('id', $this.data('id'));
-                console.log($curIpt.data('id'))
+
                 $peomarkList.hide();
                 return false;
             });
+            $(document).click(function () {
+                $peomarkList.hide();
+            })
         },
         //表单验证和提交
         bindFormSubmit: function () {
@@ -173,7 +175,6 @@ jQuery(function ($) {
                         if ($(this).data('id')) {
                             labels.push($(this).data('id'))
                         }
-                        console.log($(this).data('id'))
                     });
 
                     if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
@@ -193,7 +194,7 @@ jQuery(function ($) {
                         content: um.getContent()
                     });
 
-                    if(Util.getQueryString('id')){
+                    if (Util.getQueryString('id')) {
                         data.lectureId = Util.getQueryString('id');
                     }
                     $.post('/api/submitlecture', data, function (retData) {

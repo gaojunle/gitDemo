@@ -150,7 +150,6 @@ jQuery(function ($) {
                         if ($(this).data('id')) {
                             labels.push($(this).data('id'))
                         }
-                        console.log($(this).data('id'))
                     });
 
                     if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {

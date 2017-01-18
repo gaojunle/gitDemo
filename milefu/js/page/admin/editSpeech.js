@@ -161,7 +161,6 @@ jQuery(function ($) {
                     var formJSON = $('#createForm').serializeJson();
                     var data = $.extend({}, {
                         myapplyId: Util.getQueryString('id'),
-                        lectureId: Util.getQueryString('lectureId'),
                         avatar: $('.a-upload img').attr('src'),
                         birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
                         labels: labels.join(','),

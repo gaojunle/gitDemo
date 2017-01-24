@@ -6,17 +6,27 @@
  * @example:
  */
 jQuery(function ($) {
-    var um = null;
-    var EditSpeech = {
+    var um = null,
+        peoples = null;
+    var createSpeech = {
         init: function () {
-            if (Util.getQueryString('id')) {
-                this.initEditData();
-            } else {
-                this.initCreate();
-            }
+            $._get('/api/search', {
+                type: 'celebrity',
+                keyword: '',
+                pageNum: 1,
+                count: 1000
+            }, function (retData) {
+                peoples = retData.data;
+                if (Util.getQueryString('id')) {
+                    createSpeech.initEditData();
+                } else {
+                    createSpeech.initCreate();
+                    createSpeech.bindSelPeople();
+                }
+            });
         },
         //创建操作
-        initCreate: function (citys) {
+        initCreate: function (citys, selPeopleId) {
             this.initUploadImg();
             this.initCitySel(citys);
             this.initDateSel();
@@ -26,35 +36,37 @@ jQuery(function ($) {
         },
         //编辑时，初始化数据
         initEditData: function () {
-            $.get('/mis/api/getmyapplyinfo', {
+            $.get('/mis/api/getmyapplyInfo', {
                 myapplyId: Util.getQueryString('id')
             }, function (retData) {
                 var d = retData.data.myapplyInfo;
 
                 //头像
-                if (d.avatar) {
-                    $('.a-upload img').attr('src', d.avatar);
+                if (d.image) {
+                    $('.a-upload img').attr('src', d.image);
                     $('.a-upload span').html('');
                 }
-                TemplateRenderData(d, '#edit-people-tpl', '#createForm');
-                EditSpeech.initCreate({
+
+                TemplateRenderData(d, '#edit-speech-tpl', '#createForm');
+                createSpeech.initCreate({
                     prov: d.userProvince,
                     city: d.userCity
                 });
-                //出生日期
-                laydate({
-                    elem: '#birthday',
-                    start: d.birthday,
-                    max: laydate.now()
-                });
+
+                //选择人物
+                createSpeech.bindSelPeople(d.speaker);
                 //标签内容
                 var $labels = $('.js-mark-list');
-
                 $.each(d.labelDesc || [], function (i, v) {
                     $labels.eq(i).val(v.value).data('id', v.id);
                 });
+                //三句摘要
+                var $summarys = $('.js-summary input');
+                $.each(d.summary.split(','), function (i, v) {
+                    $summarys.eq(i).val(v);
+                })
                 //编辑器内容
-                um.setContent(d.intro);
+                um.setContent(d.content);
             });
         },
         //上传图片文件
@@ -94,12 +106,7 @@ jQuery(function ($) {
         //日期选择
         initDateSel: function () {
             laydate({
-                elem: '#birthday',
-                min: '',
-                max: laydate.now(),
-                choose: function (datas) {
-                    //start.max = datas;
-                }
+                elem: '#speaktime'
             });
         },
         //实例化编辑器
@@ -108,12 +115,28 @@ jQuery(function ($) {
         },
         //加载标签
         initLabels: function () {
-            $._get('/api/getlabellist', {type: 'celebrity'}, function (retData) {
+            $._get('/api/getlabellist', {type: 'lecture'}, function (retData) {
                 TemplateRenderData(retData, '#labal-list-tpl', '.peomark-list');
-                EditSpeech._bindLabelSel();
+                createSpeech._bindLabelSel();
             });
         },
-        //人物标签选择
+        //绑定选择人物
+        bindSelPeople: function (selPeopleId) {
+            if (typeof selPeopleId != 'undefined') {
+                $.each(peoples.list, function (i, v) {
+                    if (v.id == selPeopleId) {
+                        peoples.list[i].selected = true;
+                    }
+                });
+                $('#js-peoples-list').data('id', selPeopleId);
+            }
+
+            TemplateRenderData(peoples, '#peoples-list-tpl', '#js-peoples-list');
+            $('#js-peoples-list').chosen({}).change(function (e) {
+                $(e.target).data('id', $(e.target).find('option:selected').data('id'))
+            });
+        },
+        //绑定选择标签
         _bindLabelSel: function () {
             var $iptPeoMark = $('.js-mark-list'),
                 $peomarkList = $('.peomark-list'),
@@ -121,11 +144,10 @@ jQuery(function ($) {
 
             $iptPeoMark.focus(function () {
                 $curIpt = $(this);
-                $peomarkList.css('top', $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top).show();
-            }).blur(function () {
-                setTimeout(function () {
-                    $peomarkList.hide(200);
-                }, 200)
+                $peomarkList.css({
+                    top: $curIpt.offset().top + $curIpt.height() + 2 - $('#createForm').offset().top,
+                    left: $curIpt.offset().left - $('#createForm').offset().left
+                }).show();
             }).keyup(function (e) {
                 $peomarkList.find('li').show();
                 $peomarkList.find('li:not(:contains("' + $(this).val() + '"))').hide();
@@ -135,10 +157,13 @@ jQuery(function ($) {
             $peomarkList.on('click', 'li', function () {
                 var $this = $(this);
                 $curIpt.val($this.html()).data('id', $this.data('id'));
-                console.log($curIpt.data('id'))
+
                 $peomarkList.hide();
                 return false;
             });
+            $(document).click(function () {
+                $peomarkList.hide();
+            })
         },
         //表单验证和提交
         bindFormSubmit: function () {
@@ -150,7 +175,6 @@ jQuery(function ($) {
                         if ($(this).data('id')) {
                             labels.push($(this).data('id'))
                         }
-                        console.log($(this).data('id'))
                     });
 
                     if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
@@ -159,18 +183,24 @@ jQuery(function ($) {
                     }
 
                     var formJSON = $('#createForm').serializeJson();
-                    var data = $.extend({}, {
-                        myapplyId: Util.getQueryString('id'),
-                        avatar: $('.a-upload img').attr('src'),
-                        birthplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
-                        labels: labels.join(','),
-                        captcha: $('.codeipt').val(),
-                        intro: um.getContent()
-                    }, formJSON);
 
-                    $.post('/mis/api/submitcelebrity', data, function (retData) {
+                    var data = $.extend({}, formJSON, {
+                        image: $('.a-upload img').attr('src'),
+                        speaker: $('#js-peoples-list').data('id'),
+                        speakplace: $('.prov option:selected').html() + ' ' + $('.city option:selected').html(),
+                        viewpoint: labels.join(','),
+                        summary: formJSON.summary.join(','),
+                        captcha: $('.codeipt').val(),
+                        content: um.getContent()
+                    });
+
+                    if (Util.getQueryString('id')) {
+                        data.myapplyId = Util.getQueryString('id');
+                        data.lectureId = Util.getQueryString('lectureId');
+                    }
+                    $.post('/mis/api/submitlecture', data, function (retData) {
                         if (retData.errno == 0) {
-                            location.href = './audit-people.html';
+                            location.href = './audit-speech.html';
                         } else {
                             alert(retData.errmsg)
                         }
@@ -193,5 +223,5 @@ jQuery(function ($) {
             });
         }
     };
-    EditSpeech.init();
+    createSpeech.init();
 })

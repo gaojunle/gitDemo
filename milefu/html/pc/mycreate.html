@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/page/pc/people-detail.css?_v=<?=$ver?>">
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="contbox">
     <div class="title">
         <span class="triangle triangle-left"></span><span>我的创建</span><span class="triangle triangle-right"></span>
@@ -52,7 +52,7 @@
                 <span class="name"><a href="./peopleDetail.html?id={{id}}&_c=1">{{nameCn}}</a></span>
                 <span class="en-name">{{nameEn}}</span>
                 <span class="post">{{role}}</span>
-                <span class="focus on"><i></i>关注</span>
+                {{likeTpl isLike id}}
             </p>
 
             <div class="info">
@@ -94,12 +94,13 @@
         </div>
         <div class="desc fl">
             <p>
-                <span class="name"><a href="./peopleDetail.html?id={{id}}&_c=1">{{nameCn}}</a></span>
+                <span class="name"><a href="./peopleDetail.html?myapplyId={{myapplyId}}&celebrityId={{celebrityId}}">{{nameCn}}</a></span>
                 <span class="en-name">{{nameEn}}</span>
                 <span class="post">{{role}}</span>
-                <span class="focus on"><i></i>关注</span>
-                <span>{{statusName status}}</span>
-                {{editBtn status myapplyId celebrityId}}
+                <span class="status-op">
+                    <span style="fr">{{statusName status}}</span>
+                    {{editBtn status myapplyId celebrityId}}
+                </span>
             </p>
 
             <div class="info">
@@ -142,7 +143,7 @@
                 <p>{{subTitle}}</p>
             </div>
             <div class="fl top-r">
-                <p>
+                <p class="status-op">
                     <span>{{statusName status}}</span>
                     {{editBtn status myapplyId lectureId}}
                 </p>
@@ -165,7 +166,7 @@
     </li>
     {{/each}}
 </script>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 
 <script type="text/javascript" src="../../js/lib/jquery.min.js?_v=<?=$ver?>"></script>
 <script type="text/javascript" src="../../js/lib/jquery.pagination.js?_v=<?=$ver?>"></script>

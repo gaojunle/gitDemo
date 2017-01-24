@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/page/pc/create.css?_v=<?=$ver?>">
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="contbox ">
     <div class="title">
         <span class="triangle triangle-left"></span><span>创建人物</span><span class="triangle triangle-right"></span>
@@ -89,7 +89,7 @@
             <div id="myEditor"></div>
             <div class="submitbox clearfix">
                 <div class="codebox fl">
-                    <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=celebrity" alt="">
+                    <img class="imgcode" src="/api/getcaptcha?type=celebrity" alt="">
                     <input class="codeipt" type="text" placeholder="验证码">
                     <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
                 </div>
@@ -97,7 +97,7 @@
         </div>
     </div>
 </div>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 
 <script type="text/html" id="edit-people-tpl">
     <div class="left fl">

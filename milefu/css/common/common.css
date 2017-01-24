@@ -59,6 +59,7 @@ a {
 
 .header {
     width: 100%;
+    background: white;
 }
 
 .header .box {
@@ -153,7 +154,6 @@ a {
     z-index: 999;
     background: white;
     left: -100%;
-    height: 300px;
     border: 1px solid #dcdcdc;
 }
 

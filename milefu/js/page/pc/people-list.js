@@ -50,8 +50,7 @@ jQuery(function ($) {
                     removeByValue(selLabelIds, selId);
                     selLabel.remove();
                 }
-                console.log(selLabelIds)
-                //TODO 根据选择标签筛选人物
+
                 Main.initPeopleList(selLabelIds.join(','))
                 return false;
             });
@@ -93,6 +92,13 @@ jQuery(function ($) {
             }
 
             function renderData(retData) {
+                Template7.registerHelper('likeTpl', function (isLike, id) {
+                    var tpl = isLike ?
+                    '<span class="focus js-like on" data-type="celebrity" data-id="' + id + '">已关注</span>' :
+                    '<span class="focus js-like" data-type="celebrity" data-id="' + id + '">关注</span>'
+                    return tpl;
+                });
+
                 Template7.registerHelper('statusName', function (status) {
                     var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
                     return statusMap[status - 1] || '审核中';

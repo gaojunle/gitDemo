@@ -1,7 +1,8 @@
-body{
+body {
     background: #f6f9ff;
 }
-.contbox{
+
+.contbox {
     background: white;
 }
 
@@ -36,9 +37,11 @@ body{
     padding: 20px;
     padding-top: 0px;
 }
-.select-labels a{
+
+.select-labels a {
     color: #5e9cff;
 }
+
 .select-labels .p-sipt {
     margin-top: 20px;
     text-align: center;
@@ -58,14 +61,17 @@ body{
 .select-labels .icon-search {
     margin-left: 20px;
 }
-.peolist{
+
+.peolist {
     margin-bottom: 20px;
 }
+
 .peolist .head-icon {
     display: inline-block;
     width: 68px;
     height: 68px;
 }
+
 .peolist li {
     margin-top: 30px;
 }
@@ -84,11 +90,12 @@ body{
     font-size: 14px;
 }
 
-.desc .zhejiao{
+.desc .zhejiao {
     position: absolute;
     right: 0px;
     top: 0px;
 }
+
 .desc .name {
     font-size: 28px;
     color: #5e9cff;
@@ -107,22 +114,18 @@ body{
     position: absolute;
     top: 30px;
     right: 50px;
+    height: 22px;
     cursor: pointer;
+    padding-left: 26px;
+    background: url("../../../img/pc/unfocus.png") no-repeat;
+    background-position-y: -2px;
 }
 
-.desc .focus i {
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    background: url("../../../img/pc/unfocus.png") center center no-repeat;
-    background-size: contain;
-    vertical-align: middle;
-    margin-right: 8px;
+.desc .focus.on {
+    background: url("../../../img/pc/focus.png") no-repeat;
+    background-position-y: -2px;
 }
-.desc .focus.on i {
-    background: url("../../../img/pc/focus.png") center center no-repeat;
-    background-size: contain;
-}
+
 .desc .info {
     margin-top: 10px;
 }
@@ -133,7 +136,7 @@ body{
 
 .desc .info p label {
     display: inline-block;
-    width: 40%;
+    width: 49%;
 }
 
 .desc .line {
@@ -161,6 +164,7 @@ body{
     display: inline-block;
     width: 50%;
 }
+
 .desc .about .hot-view span {
     display: inline-block;
     background: #5e9cff;

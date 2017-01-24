@@ -228,3 +228,11 @@ body {
     padding-left: 10px;
     line-height: 1.6;
 }
+.createForm .views {
+    width: 55px;
+}
+
+.createForm select {
+    color: #222222;
+    line-height: 1.6;
+}

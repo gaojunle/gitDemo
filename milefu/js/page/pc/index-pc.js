@@ -51,6 +51,9 @@ jQuery(function ($) {
             }
 
             function renderData(retData) {
+                Template7.registerHelper('introFormat', function (intro) {
+                    return intro.replace(/white-space: nowrap/g,'')
+                })
                 var template = $('#people-list-tpl').html();
                 var compiledTemplate = Template7.compile(template);
                 var html = compiledTemplate(retData.data);
@@ -63,7 +66,7 @@ jQuery(function ($) {
                     num_edge_entries: 4, //边缘页数
                     num_display_entries: 4, //主体页数
                     callback: function (page) {
-                        if(!isInit){
+                        if (!isInit) {
                             getData(page + 1);
                         }
                     },

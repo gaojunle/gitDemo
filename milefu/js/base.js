@@ -8,11 +8,14 @@
 jQuery(function ($) {
     var Base = {
         init: function () {
-            this.loadHeader(function () {
-                Base.initWChatLogin();
-            });
-            this.loadFooter();
+            this.setCurTitle();
+            this.initWChatLogin();
+            this._headerSearch();
+            //this.loadFooter();
+            //this.loadHeader();
             this.bindChangeCodeImg();
+            this.bindCollect();
+            this.bindFocus();
         },
         //加载头部
         loadHeader: function (callFun) {
@@ -76,26 +79,53 @@ jQuery(function ($) {
             }
         },
 
-        //微信登录
+        //微信登录、退出
         initWChatLogin: function () {
-            $.getScript("http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js", function (data, status, jqxhr) {
-                $('.wlogin').click(function (e) {
-                    var obj = new WxLogin({
-                        id: "login_container",
-                        appid: "wxf3fc838959ff20bb",
-                        scope: "snsapi_login",
-                        redirect_uri: "http://wx.wangchao.org",
-                        state: new Date().getTime(),
-                        style: "",
-                        href: ""
-                    });
-                    $('#login_container').fadeIn();
-                    return false;
+            //登录
+            if ($('.wlogin').length > 0) {
+                Base.relUserLogined();
+                $.getScript("http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js", function () {
+                    $.get('/api/wechat/getopeninfo', {}, function (retData) {
+                        var d = retData.data;
+                        $('.wlogin').click(function (e) {
+                            var obj = new WxLogin({
+                                id: "login_container",
+                                appid: d.appid,
+                                scope: d.scope,
+                                redirect_uri: d.redirect_uri,
+                                state: d.state,
+                                style: "",
+                                href: ""
+                            });
+                            $('#login_container').fadeIn();
+                            return false;
+                        });
+                        $(document).click(function () {
+                            $('#login_container').fadeOut();
+                        })
+                    })
                 });
-                $(document).click(function () {
-                    $('#login_container').fadeOut();
-                })
-            });
+            } else {
+                //退出
+                $(document).on('click', '.js-logout', function () {
+                    $.get('/api/logout', {}, function (retData) {
+                        if (retData.errno == 0) {
+                            location.href = './index.html'
+                        } else {
+                            alert('退出失败，请重试');
+                        }
+                    })
+                });
+            }
+        },
+
+        //与登录用户相关处理
+        relUserLogined: function () {
+            $('.user-login-do').click(function (e) {
+                e.preventDefault();
+                $('.wlogin').trigger('click')
+                return false;
+            })
         },
 
         //切换标题
@@ -105,7 +135,7 @@ jQuery(function ($) {
             if ($curLink.length > 0) {
                 $curLink.parent().addClass('on');
             } else {
-                $('.nav li').eq(0).addClass('on');
+                //$('.nav li').eq(0).addClass('on');
             }
         },
 
@@ -115,7 +145,43 @@ jQuery(function ($) {
 
             $('.imgcode').click(function () {
                 $(this).attr('src', curSrc + '&_t=' + new Date().getTime());
+                $('.codeipt').val('')
             });
+        },
+
+        //收藏、关注
+        bindCollect: function () {
+            $(document).on('click', '.js-like', function () {
+                var $this = $(this),
+                    isLiked = $this.hasClass('on'),
+                    url = isLiked ? '/api/unlike' : '/api/like',
+                    data = isLiked ?
+                        {
+                            type: $this.data('type'),
+                            unlikeId: $this.data('id')
+                        } :
+                        {
+                            type: $this.data('type'),
+                            likeId: $this.data('id')
+                        }
+
+                $.post(url, data, function (retData) {
+                    if (retData.errno == 0) {
+                        $this.toggleClass('on');
+                        if ($this.data('type') == 'lecture') {
+                            $this.html($this.hasClass('on') ? '已收藏' : '收藏')
+                        } else {
+                            $this.html($this.hasClass('on') ? '已关注' : '关注')
+                        }
+                    } else {
+                        alert(retData.errmsg);
+                    }
+                });
+            });
+        },
+        //关注
+        bindFocus: function () {
+
         },
         //执行回调函数
         _doCallBackFun: function (callFun, params) {
@@ -183,6 +249,8 @@ function TemplateRenderData(data, templateEle, dataBoxEle) {
     $(dataBoxEle).html(html);
 }
 Date.prototype.Format = function (fmt) { //author: meizz
+    fmt = fmt || 'yyyy-MM-dd';
+
     var o = {
         "M+": this.getMonth() + 1,                 //月份
         "d+": this.getDate(),                    //日
@@ -192,6 +260,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
         "q+": Math.floor((this.getMonth() + 3) / 3), //季度
         "S": this.getMilliseconds()             //毫秒
     };
+
     if (/(y+)/.test(fmt))
         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)

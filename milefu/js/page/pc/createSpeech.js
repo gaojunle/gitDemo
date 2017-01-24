@@ -10,7 +10,6 @@ jQuery(function ($) {
         peoples = null;
     var createSpeech = {
         init: function () {
-            //TODO 人物列表
             $._get('/api/search', {
                 type: 'celebrity',
                 keyword: '',
@@ -49,8 +48,8 @@ jQuery(function ($) {
                 }
                 TemplateRenderData(d, '#edit-speech-tpl', '#createForm');
                 createSpeech.initCreate({
-                    prov: d.userProvince,
-                    city: d.userCity
+                    prov: d.speakplace.split(' ')[0],
+                    city: d.speakplace.split(' ')[1]
                 });
 
                 //选择人物
@@ -94,6 +93,7 @@ jQuery(function ($) {
         },
         //城市选择
         initCitySel: function (citys) {
+            console.log(citys)
             citys = citys || {prov: '北京', city: '东城区'};
 
             //城市选择
@@ -134,7 +134,7 @@ jQuery(function ($) {
             TemplateRenderData(peoples, '#peoples-list-tpl', '#js-peoples-list');
             $('#js-peoples-list').chosen({}).change(function (e) {
                 $(e.target).data('id', $(e.target).find('option:selected').data('id'))
-            });
+            }).trigger('change');
         },
         //绑定选择标签
         _bindLabelSel: function () {

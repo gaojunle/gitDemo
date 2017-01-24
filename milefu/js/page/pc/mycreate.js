@@ -42,6 +42,12 @@ jQuery(function ($) {
             }
 
             function renderData(retData) {
+                Template7.registerHelper('likeTpl', function (isLike, id) {
+                    var tpl = isLike ?
+                    '<span class="focus js-like on" data-type="celebrity" data-id="' + id + '"><i></i>已关注</span>' :
+                    '<span class="focus js-like" data-type="celebrity" data-id="' + id + '"><i></i>关注</span>'
+                    return tpl;
+                });
                 Template7.registerHelper('editBtn', function (status, myapplyId, celebrityId) {
                     if (status != 1) {
                         return '<a class="btn-edit" href="./createPeople.html?id=' + celebrityId + '">编辑</a>';
@@ -103,7 +109,7 @@ jQuery(function ($) {
             function renderData(retData) {
                 Template7.registerHelper('editBtn', function (status, myapplyId, lectureId) {
                     if (status != 1) {
-                        return '<a class="btn-edit" href="./createSpeech.html?id=' + lectureId + '">编辑</a>';
+                        return '<a class="btn-edit" style="vertical-align: middle;" href="./createSpeech.html?id=' + lectureId + '">编辑</a>';
                     }
                     return '';
                 });

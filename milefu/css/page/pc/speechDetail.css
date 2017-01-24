@@ -8,11 +8,17 @@ body {
     background: white;
 }
 
+.s-detail .speech-img {
+    width: 215px;
+    height: 239px;
+}
+
 .speaker {
     width: 260px;
     height: 64px;
     background-color: rgb(94, 156, 252);
     color: white;
+    line-height: 1.2;
 }
 
 .speaker img {
@@ -26,6 +32,7 @@ body {
 .speaker .job {
     display: inline-block;
     padding-top: 5px;
+    width: 180px;
 }
 
 .speaker .name {
@@ -51,6 +58,11 @@ body {
     vertical-align: middle;
 }
 
+.s-detail .info .views {
+    position: relative;
+    padding: 0px 8px;
+}
+
 .s-detail .info .views span {
     margin: 0px 6px;
     background: rgb(94, 156, 252);
@@ -59,8 +71,15 @@ body {
 }
 
 .s-detail .info .views .btn-collect {
-    float: right;
-    margin-right: 116px;
+    position: absolute;
+    left: 292px;
+    padding-left: 18px;
+    background: url("../../../img/pc/icon-collect.png") no-repeat;
+    background-position-y: 8px;
+}
+.s-detail .info .views .btn-collect.on {
+    background: url("../../../img/pc/icon-collect-on.png") no-repeat;
+    background-position-y: 8px;
 }
 
 .s-detail .desc-info {

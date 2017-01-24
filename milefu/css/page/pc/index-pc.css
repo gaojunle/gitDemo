@@ -1,37 +1,86 @@
 /* 本例子css */
-.slideBox{ width:100%; height:560px; overflow:hidden; position:relative; border:1px solid #ddd;      box-sizing: border-box;}
-.slideBox .hd{ height:15px; overflow:hidden; position:absolute; left:45%; bottom:15px; z-index:1; }
-.slideBox .hd ul{ overflow:hidden; zoom:1; float:left;  }
-.slideBox .hd ul li{ float:left; margin:0px 10px;  width:12px; border-radius:12px;height:12px; line-height:15px; text-align:center; background:#c2c2c2; cursor:pointer; }
-.slideBox .hd ul li.on{ background:#5e9cff; color:#fff; }
-.slideBox .bd{ position:relative; height:100%; z-index:0;   }
-.slideBox .bd li{ zoom:1; vertical-align:middle; }
-.slideBox .bd img{ width:100%;height:560px; display:block;  }
+.slideBox {
+    width: 100%;
+    height: 560px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.slideBox .hd {
+    height: 15px;
+    overflow: hidden;
+    position: absolute;
+    left: 45%;
+    bottom: 15px;
+    z-index: 1;
+}
+
+.slideBox .hd ul {
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+}
+
+.slideBox .hd ul li {
+    float: left;
+    margin: 0px 10px;
+    width: 12px;
+    border-radius: 12px;
+    height: 12px;
+    line-height: 15px;
+    text-align: center;
+    background: #c2c2c2;
+    cursor: pointer;
+}
+
+.slideBox .hd ul li.on {
+    background: #5e9cff;
+    color: #fff;
+}
+
+.slideBox .bd {
+    position: relative;
+    height: 100%;
+    z-index: 0;
+}
+
+.slideBox .bd li {
+    zoom: 1;
+    vertical-align: middle;
+}
+
+.slideBox .bd img {
+    width: 100%;
+    height: 560px;
+    display: block;
+}
 
 .people-list {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-flex-wrap:wrap;
-        -ms-flex-wrap:wrap;
-            flex-wrap:wrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
     margin: 0px auto;
     width: 1000px;
     padding-top: 60px;
 }
 
 .people-list .list {
-    width: 320px;
+    width: 310px;
     height: 500px;
     position: relative;
     border: 1px solid #ddd;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px 10px 0px;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.35);
 }
 
@@ -53,20 +102,25 @@
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     padding-left: 70px;
-    margin-left: 44px;
+    margin-left: 28px;
     margin-top: 30px;
     box-sizing: border-box;
     background: #5e9cff;
     color: white;
 }
-
-.people-list .list .info .name {
-    width: 150px;
+.people-list .list .info a{
+    color: white;
+    font-weight: normal;
 }
-
+.people-list .list .info .name {
+    width: 140px;
+}
+.people-list .list .info .name p {
+    width: 140px;
+}
 .people-list .list .info h2 {
     font-size: 22px;
     font-weight: normal;
@@ -137,7 +191,7 @@
     min-height: 250px;
 }
 
-.people-slide .lh li {
+.people-slide .lh li a {
     padding: 0 10px;
     float: left;
     display: -webkit-box;
@@ -146,8 +200,8 @@
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     color: #313131;
 }
 
@@ -159,7 +213,7 @@
 }
 
 .people-slide .lh li h2 {
-    width: 200px;
+    width: 196px;
     font-size: 18px;
     margin-bottom: 5px;
 }
@@ -170,6 +224,9 @@
 
 .people-slide .lh .speech-content {
     padding: 10px;
+    height: 227px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .people-list .list .people-detail {

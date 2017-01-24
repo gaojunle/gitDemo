@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/page/pc/views.css?_v=<?=$ver?>">
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="contbox">
     <div class="title">
         <span class="triangle triangle-left"></span><span>观点</span><span class="triangle triangle-right"></span>
@@ -71,7 +71,7 @@
     </div>
 </div>
 <div id="pagination-speech" class="pagination"><!-- 这里显示分页 --></div>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 <script type="text/html" id="labal-list-tpl">
     <a data-id="0" class="on" href="#">全部</a>
     {{#each data}}
@@ -85,7 +85,7 @@
         <div class="desc-pic fl"><img src="{{image}}" alt=""></div>
         <div class="hot-info fl">
             <div class="fl top-l">
-                <h3>{{title}}</h3>
+                <h3><a href="./speechDetail.html?id={{id}}">{{title}}</a></h3>
 
                 <p>{{subTitle}}</p>
             </div>

@@ -1,0 +1,98 @@
+
+.slideBox .bd .hot-box li {
+    margin-top: 30px;
+}
+
+.slideBox .bd .hot-box .desc-pic {
+    width: 215px;
+    height: 239px;
+    overflow: hidden;
+    font-size: 0px;
+}
+
+.slideBox .bd .hot-box .desc-pic img {
+    font-size: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.slideBox .hot-info {
+    width: 765px;
+    height: 239px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    background: white;
+}
+
+.slideBox .hot-info .top-l {
+    height: 70px;
+    background: #5e9cff;
+    color: white;
+    padding: 10px 20px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.slideBox .hot-info .top-l h3 {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.slideBox .hot-info .top-l h3 a {
+    color: white;
+    text-decoration: underline;
+}
+
+.slideBox .hot-info .top-l p {
+    font-size: 16px;
+}
+
+.slideBox .hot-info .top-r {
+    width: 50%;
+    line-height: 2.4;
+    font-size: 12px;
+    padding-left: 40px;
+    box-sizing: border-box;
+    height: 69px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.slideBox .hot-info .top-r span {
+    margin: 5px 10px 5px 0px;
+    vertical-align: middle;
+}
+
+.slideBox .hot-info .top-r span img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.slideBox .hot-info .hot-word {
+
+}
+
+.slideBox .hot-info .hot-word span {
+    display: inline-block;
+    background: #5e9cff;
+    padding: 1px 5px;
+    margin: 0px 5px;
+    color: white;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.slideBox .bd .cont {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 10px;
+    background: white;
+    height: 108px;
+    padding: 20px 15px;
+    overflow: hidden;
+}
+
+.slideBox .bd .cont p {
+    text-indent: 26px;
+}

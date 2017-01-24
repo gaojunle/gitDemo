@@ -5,10 +5,10 @@
             <li><a href="./index.html" class="main-link">首页</a></li>
             <li><a href="./peopleList.html" class="main-link">人物</a></li>
             <li><a href="./views.html" class="main-link">观点</a></li>
-            <li><a href="./createPeople.html" class="main-link">创建</a>
+            <li class="user-login-do"><a href="./createPeople.html" class="main-link">创建</a>
                 <ul>
-                    <li><a href="./createPeople.html">创建人物</a></li>
-                    <li><a href="./createSpeech.html">创建演讲</a></li>
+                    <li class="user-login-do"><a href="./createPeople.html">创建人物</a></li>
+                    <li class="user-login-do"><a href="./createSpeech.html">创建演讲</a></li>
                 </ul>
             </li>
         </ul>
@@ -17,20 +17,24 @@
             <img src="../../img/pc/search-icon.png" class="icon-search"></img>
         </div>
         <div class="login">
-            <div class="wlogin hide">
-                <img src="../../img/pc/weixin-icon.png" alt="">
-                微信登录
-                <div id="login_container"></div>
-            </div>
+            <?php if(is_array($currUserInfo) && $currUserInfo):?>
             <div class="logined">
-                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1950743172,1654245173&fm=116&gp=0.jpg"
+                <img src="<?=$currUserInfo['avatar'];?>"
                      alt="">
                 <ul>
                     <li><a href="myfocus.html">我的关注</a></li>
                     <li><a href="mycreate.html">我的创建</a></li>
                     <li><a href="mycollect.html">我的收藏</a></li>
+                    <li><a class="js-logout" href="javascript:;">退出</a></li>
                 </ul>
             </div>
+            <?php else:?>
+            <div class="wlogin">
+                <img src="../../img/pc/weixin-icon.png" alt="">
+                微信登录
+                <div id="login_container"></div>
+            </div>
+            <?php endif;?>
         </div>
     </div>
 </div>

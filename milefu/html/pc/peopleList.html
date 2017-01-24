@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/page/pc/people.css?_v=<?=$ver?>">
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="contbox">
     <div class="title">
         <span class="triangle triangle-left"></span><span>人物</span><span class="triangle triangle-right"></span>
@@ -27,7 +27,7 @@
     </div>
 </div>
 <div id="pagination-people" class="pagination"><!-- 这里显示分页 --></div>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 <!--人物列表模板-->
 <script type="text/html" id="people-list-tpl">
     {{#each list}}
@@ -37,10 +37,10 @@
         <div class="desc fl">
             <img class="zhejiao" src="../../img/pc/zhejiao.png" alt="">
             <p>
-                <span class="name"><a href="./peopleDetail.html?id={{id}}">{{nameCn}}</a></span>
+                <span class="name"><a href="./peopleDetail.html?id={{id}}&celebrityId={{id}}">{{nameCn}}</a></span>
                 <span class="en-name">{{nameEn}}</span>
                 <span class="post">{{role}}</span>
-                <span class="focus on"><i></i>关注</span>
+                {{likeTpl isLike id}}
             </p>
 
             <div class="info">

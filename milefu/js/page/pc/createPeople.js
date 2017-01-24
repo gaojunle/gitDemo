@@ -132,10 +132,11 @@ jQuery(function ($) {
             }).click(function () {
                 return false;
             });
+
             $peomarkList.on('click', 'li', function () {
                 var $this = $(this);
                 $curIpt.val($this.html()).data('id', $this.data('id'));
-                console.log($curIpt.data('id'))
+
                 $peomarkList.hide();
                 return false;
             });
@@ -150,7 +151,7 @@ jQuery(function ($) {
                         if ($(this).data('id')) {
                             labels.push($(this).data('id'))
                         }
-                        console.log($(this).data('id'))
+                        //console.log($(this).data('id'))
                     });
 
                     if ($('.a-upload img').attr('src').indexOf('upload-default.png') > -1) {
@@ -171,7 +172,8 @@ jQuery(function ($) {
                         if (retData.errno == 0) {
                             location.href = './mycreate.html';
                         } else {
-                            alert(retData.errmsg)
+                            alert(retData.errmsg);
+                            $('.imgcode').trigger('click')
                         }
                     });
                 },

@@ -13,19 +13,9 @@
     <link rel="stylesheet" href="../../js/lib/ueditor/themes/default/css/umeditor.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../js/lib/chosen/chosen.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../css/page/pc/create.css?_v=<?=$ver?>">
-    <style>
-        .createForm .views {
-            width: 55px;
-        }
-
-        .createForm select {
-            color: #222222;
-            line-height: 1.6;
-        }
-    </style>
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="contbox ">
     <div class="title">
         <span class="triangle triangle-left"></span><span>创建演讲</span><span class="triangle triangle-right"></span>
@@ -98,7 +88,7 @@
             <div id="myEditor"></div>
             <div class="submitbox clearfix">
                 <div class="codebox fl">
-                    <img class="imgcode" src="http://106.75.72.156/api/getcaptcha?type=lecture" alt="">
+                    <img class="imgcode" src="/api/getcaptcha?type=lecture" alt="">
                     <input class="codeipt" type="text" placeholder="验证码">
                     <a class="submitBtn js-submit" href="javascript:;">提交审核</a>
                 </div>
@@ -107,7 +97,7 @@
 
     </div>
 </div>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 <script type="text/html" id="peoples-list-tpl">
     {{#each list}}
     <option data-id="{{id}}" {{#if selected}}selected{{/if}}>{{nameCn}}</option>

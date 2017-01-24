@@ -1,3 +1,4 @@
+@import "speechList.css";
 .people-list-box {
     padding: 0px 20px;
     border: 1px solid #dcdcdc;
@@ -29,9 +30,11 @@
     padding: 20px;
     padding-top: 0px;
 }
-.select-labels a{
+
+.select-labels a {
     color: #5e9cff;
 }
+
 .select-labels .p-sipt {
     margin-top: 20px;
     text-align: center;
@@ -109,70 +112,10 @@
 
 .slideBox .hot-info {
     width: 765px;
+    height: 239px;
+    overflow: hidden;
     box-sizing: border-box;
     border-top: 1px solid #dcdcdc;
     border-bottom: 1px solid #dcdcdc;
-}
-
-.slideBox .hot-info .top-l {
-    background: #5e9cff;
-    color: white;
-    padding: 10px 20px;
-    width: 50%;
-    box-sizing: border-box;
-}
-
-.slideBox .hot-info .top-l h3 {
-    font-size: 22px;
-    font-weight: normal;
-}
-
-.slideBox .hot-info .top-l p {
-    font-size: 16px;
-}
-
-.slideBox .hot-info .top-r {
-    width: 50%;
-    line-height: 2.4;
-    font-size: 12px;
-    padding-left: 40px;
-    box-sizing: border-box;
-}
-
-.slideBox .hot-info .top-r span {
-    margin: 5px 10px 5px 0px;
-    vertical-align: middle;
-}
-
-.slideBox .hot-info .top-r span img {
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
-.slideBox .hot-info .hot-word {
-
-}
-
-.slideBox .hot-info .hot-word span {
-    display: inline-block;
-    background: #5e9cff;
-    padding: 1px 5px;
-    margin: 0px 5px;
-    color: white;
-    font-size: 12px;
-    line-height: 1.4;
-}
-
-.slideBox .bd .cont {
-    font-size: 14px;
-    line-height: 1.6;
-    padding-left: 10px;
     background: white;
-    height: 126px;
-    padding: 20px 15px;
-
-}
-
-.slideBox .bd .cont p {
-    text-indent: 26px;
 }

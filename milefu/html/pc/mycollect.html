@@ -11,9 +11,22 @@
     <link rel="stylesheet" href="../../css/common/common.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../css/common/pagination.css?_v=<?=$ver?>">
     <link rel="stylesheet" href="../../css/page/pc/people-detail.css?_v=<?=$ver?>">
+    <style>
+        .btn-collect {
+            padding-left: 18px;
+            background: url(../../img/pc/icon-collect.png) no-repeat;
+            background-position-y: 10px;
+            float: right;
+            margin-right: 20px;
+        }
+        .btn-collect.on {
+            background: url("../../img/pc/icon-collect-on.png") no-repeat;
+            background-position-y: 10px;
+        }
+    </style>
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="contbox">
     <div class="title">
         <span class="triangle triangle-left"></span><span>我的收藏</span><span class="triangle triangle-right"></span>
@@ -55,7 +68,7 @@
     </div>
     <div id="pagination-speech" class="pagination"><!-- 这里显示分页 --></div>
 </div>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 <!--演讲列表模板-->
 <script type="text/html" id="speech-list-tpl">
     {{#each likeList}}
@@ -77,6 +90,7 @@
                     {{#each labelDesc}}
                     <span data-id="{{id}}">{{value}}</span>
                     {{/each}}
+                    {{likeTpl isLike id}}
                 </p>
             </div>
             <div style="clear: both"></div>
@@ -128,7 +142,10 @@
                 }
 
                 function renderData(retData) {
-                    Template7.registerHelper('publicDate',function (speaktime) {
+                    Template7.registerHelper('likeTpl', function (isLike, id) {
+                        return '<a class="btn-collect js-like on" href="javascript:;" data-type="lecture" data-id="' + id + '">已收藏</a>';
+                    });
+                    Template7.registerHelper('publicDate', function (speaktime) {
                         return new Date(speaktime).Format('yyyy-MM-dd')
                     })
                     var template = $('#speech-list-tpl').html();

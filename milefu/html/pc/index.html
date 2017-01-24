@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/page/pc/index-pc.css?_v=<?=$ver?>">
 </head>
 <body>
-<div id="header"></div>
+<?php include TPLPATH . '/html/pc/_header.html';?>
 <div class="wraper">
     <div id="slideBox" class="slideBox ">
         <div class="hd">
@@ -96,7 +96,7 @@
         <img style="display: block;width: 100%;" src="../../img/pc/foot.png" alt="">
     </div>
 </div>
-<div id="footer"></div>
+<?php include TPLPATH . '/html/pc/_footer.html';?>
 <script id="people-list-tpl" type="text/html">
     {{#each list}}
     <div class="list">
@@ -105,8 +105,8 @@
                 <img class="people-head" src="{{avatar}}" alt="">
                 <div class="info">
                     <div class="name">
-                        <h2>{{nameCn}}</h2>
-                        <p>{{role}}</p>
+                        <h2><a href="./peopleDetail.html?id={{id}}&celebrityId={{id}}">{{nameCn}}</a></h2>
+                        <p class="ellipsis" title="{{role}}">{{role}}</p>
                     </div>
                     <a class="focus" href="#">关注数{{likeNum}}</a>
                 </div>
@@ -126,16 +126,18 @@
                     <ul class="lh" style="display: block;">
                         {{#each lectures}}
                         <li>
-                            <img src="{{image}}" alt="">
-                            <div>
-                                <h2 class="ellipsis">{{title}}</h2>
-                                <p class="ellipsis">{{subTitle}}</p>
-                            </div>
+                            <a href="./speechDetail.html?id={{id}}">
+                                <img src="{{image}}" alt="">
+                                <div>
+                                    <h2 class="ellipsis" title="{{title}}">{{title}}</h2>
+                                    <p class="ellipsis" title="{{subTitle}}">{{subTitle}}</p>
+                                </div>
+                            </a>
                         </li>
                         {{/each}}
                     </ul>
                     <div class="lh" style="display: none;">
-                        <div class="speech-content">{{intro}}</div>
+                        <div class="speech-content">{{introFormat intro}}</div>
                     </div>
                 </div>
             </div>

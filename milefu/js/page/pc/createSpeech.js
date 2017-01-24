@@ -33,6 +33,7 @@ jQuery(function ($) {
             this.initEditor();
             this.initLabels();
             this.bindFormSubmit();
+            $('#speaktime').val(new Date().Format())
         },
         //编辑时，初始化数据
         initEditData: function () {

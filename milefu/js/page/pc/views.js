@@ -10,12 +10,12 @@ jQuery(function ($) {
         init: function () {
             this.bindEvent();
             this.initLabelList();
-            this.initSpeechList('', $('.js-sort li.on').index());
+            this.initSpeechList('', $('.js-sort li.on').data('sort'));
         },
 
         bindEvent: function () {
             $(".slideBox").slide({trigger: 'click', delayTime: 200,endFun:function () {
-                Main.initSpeechList('', $('.js-sort li.on').index());
+                Main.initSpeechList('', $('.js-sort li.on').data('sort'));
             }});
         },
         //标签选择操作
@@ -30,8 +30,15 @@ jQuery(function ($) {
                     }
                 }
             }
-
-            $('.js-labels').on('click', 'a:not([data-id=0])', function () {
+            //单选
+            $('.js-labels').on('click', 'a', function () {
+                var $this = $(this);
+                $this.addClass('on').siblings().removeClass('on');
+                Main.initSpeechList($(this).data('id'),$('.js-sort li.on').data('sort'))
+            });
+            return false;
+            //多选
+            /*$('.js-labels').on('click', 'a:not([data-id=0])', function () {
                 var $this = $(this),
                     $sLabels = $('.js-select-labels'),
                     selId = $this.data('id'),
@@ -48,9 +55,9 @@ jQuery(function ($) {
                     selLabel.remove();
                 }
 
-                Main.initSpeechList(selLabelIds.join(','),$('.js-sort li.on').index())
+                Main.initSpeechList(selLabelIds.join(','),$('.js-sort li.on').data('sort'))
                 return false;
-            });
+            });*/
         },
         //加载标签
         initLabelList: function () {

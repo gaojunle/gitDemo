@@ -48,6 +48,8 @@ body {
 
 .a-upload span {
     position: relative;
+    line-height: 27px;
+    display: inline-block;
 }
 
 .a-upload img {
@@ -228,6 +230,7 @@ body {
     padding-left: 10px;
     line-height: 1.6;
 }
+
 .createForm .views {
     width: 55px;
 }

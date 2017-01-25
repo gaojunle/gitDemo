@@ -30,6 +30,8 @@ body {
 
 .labels a.on {
     color: #5e9cff;
+    background: #5e9cff;
+    color: white;
 }
 
 .select-labels {

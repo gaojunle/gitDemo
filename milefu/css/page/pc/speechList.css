@@ -90,7 +90,7 @@
     background: white;
     height: 108px;
     padding: 20px 15px;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .slideBox .bd .cont p {

@@ -1,4 +1,5 @@
 @import "speechList.css";
+
 .people-list-box {
     padding: 0px 20px;
     border: 1px solid #dcdcdc;
@@ -23,6 +24,8 @@
 
 .labels a.on {
     color: #5e9cff;
+    background: #5e9cff;
+    color: white;
 }
 
 .select-labels {

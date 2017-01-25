@@ -59,17 +59,26 @@ jQuery(function ($) {
         },
         //上传图片文件
         initUploadImg: function () {
-            $('.a-upload input').change(function () {
+            $('.a-upload input').change(function (e) {
+                try {
+                    if (this.files[0].size > 5 * 1024 * 1024) {
+                        alert('图片文件超出5MB限制，请重新选择');
+                        return false;
+                    }
+                } catch (e) {
+                }
+
+                $('.a-upload span').html('文件上传中...');
+
                 $("#uploadImg").ajaxSubmit({
                     url: '/api/uploadimg',
-                    data: {
-                        type: 'celebrity'
-                    },
+                    data: {},
                     type: "POST",
                     success: function (retData) {
                         if (retData.errno == 0) {
-                            $('.a-upload img').attr('src', retData.data);
-                            $('.a-upload span').html('');
+                            $('.a-upload img').attr('src', retData.data).on('load', function () {
+                                $('.a-upload span').html('');
+                            });
                         } else {
                             alert('上传出错')
                         }

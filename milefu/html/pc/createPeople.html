@@ -26,7 +26,7 @@
                 <a href="javascript:;" class="a-upload">
                     <img src="../../img/pc/upload-default.png" alt="">
                     <input name="imgFile" type="file" accept="image/png,image/gif,image/jpg,image/jpeg,image/bmp"/>
-                    <span>点击上传头像</span>
+                    <span>点击上传头像（图片小于5MB，推荐图片大小220*240px）</span>
                 </a>
             </form>
         </div>
@@ -41,7 +41,7 @@
                     <label for="role">主要身份</label>
                     <input id="role" name="role" type="text" placeholder="选填">
                 </p>
-                <p>
+                <p class="hide">
                     <label for="career">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</label>
                     <input id="career" name="career" type="text" placeholder="选填">
                 </p>
@@ -74,7 +74,7 @@
                     <label for="college">毕业学校</label>
                     <input id="college" name="college" type="text" placeholder="选填">
                 </p>
-                <p>
+                <p class="hide">
                     <label for="nationality">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍</label>
                     <input id="nationality" name="nationality" type="text" placeholder="选填">
                 </p>
@@ -109,7 +109,7 @@
             <label for="role">主要身份</label>
             <input id="role" name="role" type="text" placeholder="选填" value="role">
         </p>
-        <p>
+        <p class="hide">
             <label for="career">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</label>
             <input id="career" name="career" type="text" placeholder="选填" value="{{career}}">
         </p>
@@ -142,7 +142,7 @@
             <label for="college">毕业学校</label>
             <input id="college" name="college" type="text" placeholder="选填" value="{{college}}">
         </p>
-        <p>
+        <p class="hide">
             <label for="nationality">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍</label>
             <input id="nationality" name="nationality" type="text" placeholder="选填" value="{{nationality}}">
         </p>

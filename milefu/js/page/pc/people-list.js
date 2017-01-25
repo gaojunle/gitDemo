@@ -34,7 +34,15 @@ jQuery(function ($) {
                 }
             }
 
-            $('.js-labels').on('click', 'a:not([data-id=0])', function () {
+            //单选
+            $('.js-labels').on('click', 'a', function () {
+                var $this = $(this);
+                $this.addClass('on').siblings().removeClass('on');
+                Main.initPeopleList($(this).data('id'));
+            });
+            return false;
+            //多选
+            /*$('.js-labels').on('click', 'a:not([data-id=0])', function () {
                 var $this = $(this),
                     $sLabels = $('.js-select-labels'),
                     selId = $this.data('id'),
@@ -53,7 +61,7 @@ jQuery(function ($) {
 
                 Main.initPeopleList(selLabelIds.join(','))
                 return false;
-            });
+            });*/
         },
 
         //加载标签

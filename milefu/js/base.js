@@ -152,6 +152,11 @@ jQuery(function ($) {
         //收藏、关注
         bindCollect: function () {
             $(document).on('click', '.js-like', function () {
+                //验证登录
+                if ($('.wlogin').length > 0){
+                    $('.wlogin').trigger('click');
+                    return false;
+                }
                 var $this = $(this),
                     isLiked = $this.hasClass('on'),
                     url = isLiked ? '/api/unlike' : '/api/like',

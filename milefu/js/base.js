@@ -249,6 +249,7 @@ $._post = function (url, data, callback) {
 function TemplateRenderData(data, templateEle, dataBoxEle) {
     var template = $(templateEle).html();
     var compiledTemplate = Template7.compile(template);
+
     var html = compiledTemplate(data);
 
     $(dataBoxEle).html(html);

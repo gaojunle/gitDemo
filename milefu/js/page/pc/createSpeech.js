@@ -103,7 +103,7 @@ jQuery(function ($) {
         },
         //城市选择
         initCitySel: function (citys) {
-            console.log(citys)
+            //console.log(citys)
             citys = citys || {prov: '北京', city: '东城区'};
 
             //城市选择

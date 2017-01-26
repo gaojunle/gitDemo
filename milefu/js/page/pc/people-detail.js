@@ -94,17 +94,17 @@ jQuery(function ($) {
                 });
             }
 
+            Template7.registerHelper('likeTpl', function (isLike, id) {
+                //console.log(isLike, id);
+                var tpl = isLike ?
+                '<span class="focus js-like on" data-type="celebrity" data-id="' + id + '">已关注</span>' :
+                '<span class="focus js-like" data-type="celebrity" data-id="' + id + '">关注</span>'
+                return tpl;
+            });
+            Template7.registerHelper('publicDate', function (speaktime) {
+                return new Date(speaktime).Format('yyyy-MM-dd')
+            });
             function renderData(retData) {
-                Template7.registerHelper('likeTpl', function (isLike, id) {
-                    var tpl = isLike ?
-                    '<span class="focus js-like on" data-type="celebrity" data-id="' + id + '">已关注</span>' :
-                    '<span class="focus js-like" data-type="celebrity" data-id="' + id + '">关注</span>'
-                    return tpl;
-                });
-
-                Template7.registerHelper('publicDate', function (speaktime) {
-                    return new Date(speaktime).Format('yyyy-MM-dd')
-                })
                 var template = $('#speech-list-tpl').html();
                 var compiledTemplate = Template7.compile(template);
                 var html = compiledTemplate(retData.data);

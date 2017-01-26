@@ -98,20 +98,18 @@ jQuery(function ($) {
                     return false;
                 });
             }
+            Template7.registerHelper('likeTpl', function (isLike, id) {
+                var tpl = isLike ?
+                '<span class="focus js-like on" data-type="celebrity" data-id="' + id + '">已关注</span>' :
+                '<span class="focus js-like" data-type="celebrity" data-id="' + id + '">关注</span>'
+                return tpl;
+            });
 
+            Template7.registerHelper('statusName', function (status) {
+                var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
+                return statusMap[status - 1] || '审核中';
+            });
             function renderData(retData) {
-                Template7.registerHelper('likeTpl', function (isLike, id) {
-                    var tpl = isLike ?
-                    '<span class="focus js-like on" data-type="celebrity" data-id="' + id + '">已关注</span>' :
-                    '<span class="focus js-like" data-type="celebrity" data-id="' + id + '">关注</span>'
-                    return tpl;
-                });
-
-                Template7.registerHelper('statusName', function (status) {
-                    var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
-                    return statusMap[status - 1] || '审核中';
-                });
-
                 var template = $('#people-list-tpl').html();
                 var compiledTemplate = Template7.compile(template);
                 var html = compiledTemplate(retData.data);

@@ -135,7 +135,7 @@ jQuery(function ($) {
             $peomarkList.on('click', 'li', function () {
                 var $this = $(this);
                 $curIpt.val($this.html()).data('id', $this.data('id'));
-                console.log($curIpt.data('id'))
+                //console.log($curIpt.data('id'))
                 $peomarkList.hide();
                 return false;
             });

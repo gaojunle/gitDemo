@@ -90,8 +90,9 @@
     background: white;
     height: 108px;
     padding: 20px 15px;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
+
 
 .slideBox .bd .cont p {
     text-indent: 26px;

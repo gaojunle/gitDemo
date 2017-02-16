@@ -115,8 +115,11 @@
                     <table class="table js-list-table">
                         <thead>
                         <tr>
+                            <th>序号</th>
                             <th>人物</th>
                             <th>身份</th>
+                            <th class="text-center">收录篇数</th>
+
                             <th>职业</th>
                             <th>出生地</th>
                             <th>出生日期</th>
@@ -139,8 +142,10 @@
 <script id="people-list-tpl" type="text/html">
     {{#each myapplyList}}
     <tr>
+        <td>{{mindex @index}}</td>
         <td><img class="head-pic" src="{{avatar}}" alt="">{{nameCn}}</td>
         <td>{{role}}</td>
+        <td class="text-center">{{lecNum}}</td>
         <td>{{career}}</td>
         <td>{{birthplace}}</td>
         <td>{{birthday}}</td>
@@ -224,6 +229,9 @@
                 }
 
                 function renderData(retData) {
+                    Template7.registerHelper('mindex', function (index) {
+                        return ++index;
+                    });
                     Template7.registerHelper('statusName', function (status) {
                         var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
                         return statusMap[status - 1] || '审核中';

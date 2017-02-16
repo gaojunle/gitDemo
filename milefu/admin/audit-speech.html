@@ -114,6 +114,7 @@
                     <table class="table js-list-table">
                         <thead>
                         <tr>
+                            <th>序号</th>
                             <th>演讲标题</th>
                             <th>副标题</th>
                             <th>演讲人</th>
@@ -140,6 +141,7 @@
 <script id="people-list-tpl" type="text/html">
     {{#each myapplyList}}
     <tr>
+        <td>{{mindex @index}}</td>
         <td><img class="head-pic" src="{{image}}" alt="">{{title}}</td>
         <td>{{subTitle}}</td>
         <td>{{speaker}}</td>
@@ -235,6 +237,9 @@
                 }
 
                 function renderData(retData) {
+                    Template7.registerHelper('mindex', function (index) {
+                        return ++index;
+                    });
                     Template7.registerHelper('statusName', function (status) {
                         var statusMap = ['审核中', '审核通过', '审核拒绝'];//1,2,3
                         return statusMap[status - 1] || '审核中';

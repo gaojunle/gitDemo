@@ -73,7 +73,7 @@ jQuery(function ($) {
 
         //加载演讲列表 viewpoint 观点id sort排序类型
         initSpeechList: function (viewpoint, sort) {
-            var pageCount = 5,
+            var pageCount = 10,
                 isInit = true;
 
             getData(1);

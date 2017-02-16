@@ -102,7 +102,9 @@ body {
     font-size: 28px;
     color: #5e9cff;
 }
-
+.desc .name a{
+    text-decoration: underline;
+}
 .desc .en-name {
     font-size: 20px;
 }

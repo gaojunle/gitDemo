@@ -111,7 +111,7 @@
 <script type="text/html" id="people-list-tpl">
     {{#each list}}
     <div class="peo-info clearfix" data-id="{{myapplyId}}">
-        <img class="head-icon fl" src="{{avatar}}" alt="">
+        <a href="./peopleDetail.html?id={{id}}&_c=1"><img class="head-icon fl" src="{{avatar}}" alt=""></a>
 
         <div class="zhejiao-box">
             <img class="zhejiao" src="../../img/pc/people-zhejiao.png" alt="">
@@ -156,12 +156,12 @@
 <script type="text/html" id="speech-list-tpl">
     {{#each list}}
     <li class="clearfix">
-        <div class="desc-pic fl"><img src="{{image}}" alt=""></div>
+        <div class="desc-pic fl"><a href="./speechDetail.html?id={{id}}"><img src="{{image}}" alt=""></a></div>
         <div class="hot-info fl">
             <div class="fl top-l">
-                <h3>{{title}}</h3>
+                <h3><a href="./speechDetail.html?id={{id}}">{{title}}</a></h3>
 
-                <p>{{subTitle}}</p>
+                <p><a style="text-decoration: underline" href="./speechDetail.html?id={{id}}">{{subTitle}}</a></p>
             </div>
             <div class="fl top-r">
                 <p>

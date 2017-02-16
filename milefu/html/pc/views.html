@@ -49,7 +49,7 @@
                             <p>
                                 <span><img src="../../img/pc/redu.png" alt="">热度2000</span>
                                 <span><img src="../../img/pc/shoucang.png" alt="">收藏30篇</span>
-                                <span><img src="../../img/pc/clock.png" alt="">发布时间 2017-1-03</span>
+                                <span><img src="../../img/pc/clock.png" alt="">演讲时间 2017-1-03</span>
                             </p>
 
                             <p class="hot-word">
@@ -82,7 +82,9 @@
 <script type="text/html" id="speech-list-tpl">
     {{#each list}}
     <li class="clearfix">
-        <div class="desc-pic fl"><img src="{{image}}" alt=""></div>
+        <div class="desc-pic fl">
+            <a href="./speechDetail.html?id={{id}}"><img src="{{image}}" alt=""></a>
+        </div>
         <div class="hot-info fl">
             <div class="fl top-l">
                 <h3><a href="./speechDetail.html?id={{id}}">{{title}}</a></h3>
@@ -93,7 +95,7 @@
                 <p>
                     <span><img src="../../img/pc/redu.png" alt="">热度{{hotNum}}</span>
                     <span><img src="../../img/pc/shoucang.png" alt="">收藏{{likeNum}}篇</span>
-                    <span><img src="../../img/pc/clock.png" alt="">发布时间 {{publicDate speaktime}}</span>
+                    <span><img src="../../img/pc/clock.png" alt="">演讲时间 {{publicDate speaktime}}</span>
                 </p>
                 <p class="hot-word">
                     {{#each labelDesc}}

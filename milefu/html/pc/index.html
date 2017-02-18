@@ -102,13 +102,13 @@
     <div class="list">
         <div class="list-title">
             <div class="clearfix">
-                <img class="people-head" src="{{avatar}}" alt="">
+                <a href="./peopleDetail.html?id={{id}}&celebrityId={{id}}"><img class="people-head" src="{{avatar}}" alt=""></a>
                 <div class="info">
                     <div class="name">
                         <h2><a href="./peopleDetail.html?id={{id}}&celebrityId={{id}}">{{nameCn}}</a></h2>
                         <p class="ellipsis" title="{{role}}">{{role}}</p>
                     </div>
-                    <a class="focus" href="#">关注数{{likeNum}}</a>
+                    <span class="focus">已关注{{likeNum}}</span>
                 </div>
                 <p class="status">
                     <span><img src="../../img/pc/redu.png" alt="">热度{{hotNum}}</span>

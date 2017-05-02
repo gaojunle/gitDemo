@@ -73,11 +73,12 @@
 <script type="text/html" id="speech-list-tpl">
     {{#each likeList}}
     <li class="clearfix">
-        <div class="desc-pic fl"><img src="{{image}}" alt=""></div>
+        <div class="desc-pic fl">
+            <a href="./speechDetail.html?id={{id}}"><img src="{{image}}" alt=""></a>
+        </div>
         <div class="hot-info fl">
             <div class="fl top-l">
-                <h3>{{title}}</h3>
-
+                <h3><a href="./speechDetail.html?id={{id}}">{{title}}</a></h3>
                 <p>{{subTitle}}</p>
             </div>
             <div class="fl top-r">

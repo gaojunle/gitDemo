@@ -229,7 +229,10 @@
                 }
 
                 function renderData(retData) {
+                    var data = retData.data;
                     Template7.registerHelper('mindex', function (index) {
+                        console.log(parseInt(data.totalNum) - (parseInt(data.pageNum) - 1) * parseInt(data.count) - index)
+                        return data.totalNum - (data.pageNum - 1) * data.count - index
                         return ++index;
                     });
                     Template7.registerHelper('statusName', function (status) {

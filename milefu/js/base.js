@@ -96,6 +96,7 @@ jQuery(function ($) {
                                 state: d.state,
                                 style: "",
                                 href: ""
+                                //href: "http://www.melefo.com/css/common/wxStyle.css"
                             });
                             $('#login_container').fadeIn();
                             return false;
@@ -155,6 +156,7 @@ jQuery(function ($) {
                 //验证登录
                 if ($('.wlogin').length > 0){
                     $('.wlogin').trigger('click');
+                    alert('请使用微信扫描右上角二维码登录！');
                     return false;
                 }
                 var $this = $(this),

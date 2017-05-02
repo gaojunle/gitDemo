@@ -48,7 +48,7 @@ IdentityFile ~/.ssh/id_rsa_xxx #该项目ssh key 所在路径
         name = **you name**
         email = **you email**
 ```
-对以上**包括中内容进行修改，其中url后面xxxxx值是对应上一步中git配置的Host值（上面提到了："待会用到"，就在这儿用）
+添加了最后两行[user]对应内容，对以上**包括中内容进行修改，其中url后面xxxxx值是对应上一步中git配置的Host值（上面提到了："待会用到"，就在这儿用）
 如果有必要可以执行取消全局设置的命令
 ```
 git config --global --unset user.name

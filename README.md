@@ -8,7 +8,7 @@
 git默认都是全局设置，比如：
 1. 生成ssh key 可以用以下命令生成,不同项目起不同名字，如id_rsa_xxx
 ```
-ssh-keygen -C "your_email" -t rsa
+ssh-keygen -C "your_email" -t rsa -f id_rsa_xxx
 ```
 输入文件名：id_rsa_xxx，回车；
 
